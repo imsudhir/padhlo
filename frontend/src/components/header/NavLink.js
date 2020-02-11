@@ -95,9 +95,6 @@ import {
             {/* <NavLink style={{background:"rgb(0, 174, 239)"}} tag={Link} to="/login" tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSign}/>
              LOGIN
             </NavLink>  */}
-            <NavLink key="001" to="/" style={{display:"block"}} tag={Link} className="mr-auto">
-                 <Createtutor />
-          </NavLink>
           </Collapse>
           <ul>
           <NavLink key="002" to="/student" style={{display:"block"}} tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSign}/>

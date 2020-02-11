@@ -31,10 +31,6 @@ function App() {
       <Route path="/home">
       <Home />
       </Route>
-      
-      <Route path="/createtutor">
-      <Createtutor />
-      </Route>
       <Route path="/student">
         <Createstudent />
       </Route>

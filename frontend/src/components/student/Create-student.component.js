@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import {container, TabContent, TabPane, Nav, NavItem,
    NavLink, Card, Button, CardTitle, CardText, Row, Col, 
-   Table, Form, FormGroup, Label, 
+   Table, Form, ButtonGroup, FormGroup, Label, 
    Input, FormText} from 'reactstrap';
    import Studentlogin from "./Login-student.components";
 
@@ -321,12 +321,32 @@ const Studentloginsignup = (props) => {
   return (
     <div>
 
-        <Row>
+        <Row className="mt-3">
             <Col lg="4">
               </Col>
-              <Nav tabs>
-                <NavItem>
+              <Col md={{ size: 4, order: 1, offset: 4 }}>
+                <ButtonGroup size="sm"> 
+                <Button>
+                   <NavLink 
+                    className={classnames({ active: activeTab === '1' })}
+                    onClick={() => { toggle('1'); }}
+                  >
+                    Login
+                  </NavLink>
+                  </Button>
+                <Button>
                   <NavLink
+                    className={classnames({ active: activeTab === '2' })}
+                    onClick={() => { toggle('2'); }}
+                  >
+                signup
+                </NavLink>
+                </Button>
+                 </ButtonGroup>
+                 </Col>
+              {/* <Nav tab>
+                <NavItem>
+                  <NavLink 
                     className={classnames({ active: activeTab === '1' })}
                     onClick={() => { toggle('1'); }}
                   >
@@ -341,7 +361,7 @@ const Studentloginsignup = (props) => {
                 signup
                 </NavLink>
                 </NavItem>
-               </Nav>
+               </Nav> */}
                <Col lg="4">
               </Col>
             
