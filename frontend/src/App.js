@@ -17,6 +17,7 @@ import TopHeader from "./components/header/TopHeader"
 import Footer from "./components/footer/Footer"
 import Createtutor from "./components/tutor/Create-tutor.component";
 import Createstudent from "./components/student/Create-student.component";
+import Tutordash from "./Tutordash";
 import Info from "./components/Info";
 import Home from "./components/Home";
 
@@ -36,6 +37,9 @@ function App() {
       </Route>
       <Route path="/info">
       <Info />
+      </Route>
+      <Route exat path="/Tutordash">
+<Tutordash />
       </Route>
       <Row className="footer pt-5 mt-5">
         <Footer />

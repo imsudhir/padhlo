@@ -101,6 +101,12 @@ import {
              LOGIN
           </NavLink> 
           </ul>
+          <ul>
+          <NavLink key="002" to="/Tutordash" style={{display:"block"}} tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSign}/>
+          Tutordash
+          </NavLink> 
+          </ul>
+          
          </Navbar>
       </React.Fragment> 
     }
