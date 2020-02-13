@@ -5,7 +5,7 @@ import {container, TabContent, TabPane, Nav, NavItem,
    NavLink, Card, Button, CardTitle, CardText, Row, Col, 
    Table, Form, ButtonGroup, FormGroup, Label, 
    Input, FormText} from 'reactstrap';
-   import Studentlogin from "./Login-student.components";
+import Studentlogin from "./Login-student.components";
 
 let patterns = {
   name:/^[a-z\d ]{4,20}$/i,
@@ -207,10 +207,10 @@ handleSubmit = (e) => {
       console.log(this.state.user);
         e.preventDefault();
         if(this.state.validation.nameValid && this.state.validation.emailValid && this.state.validation.contactValid && this.state.validation.passwordValid){
-        fetch("http://localhost:3002/addstudent",
+        fetch("http://localhost:3002/login/user",
         {
             method : "Post", 
-            headers : { 
+            headers : {
                 'Content-Type':'application/json'
             },
             body : JSON.stringify(this.state.user)
@@ -237,8 +237,7 @@ handleSubmit = (e) => {
       alert("Please Enter All required entry");
     }
   }
-   
-    render() {
+   render() {
         return (
     <div>
       {this.state.isRedirect ? (
@@ -339,7 +338,7 @@ const Studentloginsignup = (props) => {
                     className={classnames({ active: activeTab === '2' })}
                     onClick={() => { toggle('2'); }}
                   >
-                signup
+                Signup
                 </NavLink>
                 </Button>
                  </ButtonGroup>
