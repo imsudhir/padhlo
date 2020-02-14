@@ -5,64 +5,110 @@ import {container,  TabContent, TabPane, Nav, NavItem,
    Table, Form, FormGroup, Label, 
    Input, FormText} from 'reactstrap';
 
-let patterns = {
-  name:/^[a-z\d ]{5,20}$/i,
-  email:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-  rating:/^[1-5]{1}$/,
-  contact:/^(\+\d{2,4})?\s?(\d{10})$/,
-  address: /^[a-zA-Z0-9 ]{5,100}$/
-}
-
+   let patterns = {
+    name:/^[a-z\d ]{4,20}$/i,
+    email:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+    contact:/^(\+\d{2,4})?\s?(\d{10})$/,
+    password:/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z@0-9]+){5,20}$/,
+  }
+  
 class Studentlogin extends Component {
-      constructor(){
-          super();
-          this.state = {
-              name:'',
-              email:'',
-              rating:'', 
-              address:'',
-              nameValid:false,
-              emailValid:false,
-              ratingValid:false, 
-              addressValid:false
-          }
-      }
-     
-  handleName = (e) => {
-      console.log(this.state);
-       this.setState({
-        name:e.target.value
-      })
-    if(patterns.name.test(this.state.name)){
-      document.getElementById("nameerror").style.display="none";
-      this.setState({
-        nameValid:true
-      })
-    } else{
-      this.setState({
-        nameValid:false
-      })
-      console.log("plz enter correct name")
-      document.getElementById("nameerror").style.display="block";
+  constructor(){
+    super(); 
+    this.state = {
+        user:{
+            email:'',
+            password:''
+        },
+        validation:{
+            emailValid:false,
+            passwordValid:false
+      },
+      isRedirect:false
     }
 }
-
+   
 handleEmail = (e) => {
-   console.log(e.target.value);
-   this.setState({
-    email:e.target.value
-  })
+  console.log(e.target.value);
+  this.setState({
+   ...this.state,
+      user:{
+        ...this.state.user,  
+        email:e.target.value 
+      },
+     validation:{
+          ...this.state.validation
+        }
+   })
 if(patterns.email.test(e.target.value)){
-  document.getElementById("emailerror").style.display="block";
-  this.setState({
-    emailValid:true
-  })
+ document.getElementById("emailerrorr").style.display="none";
+ this.setState({
+   ...this.state,
+      user:{
+        ...this.state.user,  
+        email:e.target.value 
+      },
+     validation:{
+          ...this.state.validation,
+          emailValid:true
+        }
+   })
 } else{
-  console.log("plz enter correct email")
+ document.getElementById("emailerrorr").style.display="block";
+ console.log("plz enter correct email")
+ this.setState({
+   ...this.state,
+      user:{
+        ...this.state.user,  
+        email:e.target.value 
+      },
+     validation:{
+          ...this.state.validation,
+          emailValid:false
+        }
+   })
+}
+}
+
+handlePassword = (e) => {
+  console.log(e.target.value);
   this.setState({
-    emailValid:false
-  })
-  document.getElementById("emailerror").style.display="block";
+   ...this.state,
+      user:{
+        ...this.state.user,  
+        password:e.target.value 
+      },
+     validation:{
+          ...this.state.validation,
+        }
+   })
+if(patterns.password.test(e.target.value)){
+ document.getElementById("passworderror").style.display="none";
+ this.setState({
+   ...this.state,
+      user:{
+        ...this.state.user,  
+        password:e.target.value 
+      },
+     validation:{
+          ...this.state.validation,
+          passwordValid:true
+        }
+   })
+} else{
+ console.log("plz enter valid password")
+ this.setState({
+   ...this.state,
+      user:{
+        ...this.state.user,  
+        password:e.target.value 
+      },
+     validation:{
+          ...this.state.validation,
+          passwordValid:false
+        }
+   })
+ document.getElementById("passworderror").style.display="block";
 }
 }
 
@@ -70,7 +116,7 @@ handleSubmit = (e) => {
       console.log(this.state);
         e.preventDefault();
         if(this.state.nameValid && this.state.emailValid && this.state.ratingValid && this.state.addressValid){
-        fetch("http://localhost:3002/addtutor",
+        fetch("http://localhost:3002/login",
         {
             method : "Post", 
             headers : {
@@ -79,25 +125,11 @@ handleSubmit = (e) => {
             body : JSON.stringify(this.state)
         }).then((result) => {result.json().then((res)=>{
           alert("New User created Successfully")
-        //   this.setState({
-        //     name:'',
-        //     email:'',
-        //     rating:'', 
-        //     address:'',
-        //     nameValid:false,
-        //     emailValid:false,
-        //     ratingValid:false, 
-        //     addressValid:false
-        // })
-          
-      // e.target.value=null
         })
     })
     console.log(this.state);
-    
   }else{
       alert("Please Enter All required entry");
-
     }
   }
    
@@ -113,7 +145,7 @@ handleSubmit = (e) => {
         <FormGroup>
             {/* <Label for="restaurantEmail">Email</Label> */}
             <Input type="email" name="email"
-            onChange={this.handleEmail} placeholder ="Name" id="restEmail" required="true" value={this.state.email} placeholder="Email" />
+            onChange={this.handleEmail} id="restEmail" required="true" value={this.state.user.email} placeholder="Email" />
             <span id="emailerror" style={{color:"red", display:"none"}}>Enter correct Email</span>
           </FormGroup>
         </Col>
@@ -123,8 +155,8 @@ handleSubmit = (e) => {
       <Col lg="4">
       <FormGroup>
         {/* <Label for="restaurantAddress">Address</Label> */}
-        <Input type="password" name="address" onChange={this.handleAddress} id="restddress" required="true" value={this.state.address} placeholder="Password"/>
-        <span id="addresserror" style={{color:"red", display:"none"}}>Enter correct Address(Don't use special chars)</span>
+        <Input type="password" name="address" onChange={this.handlePassword} id="restddress" required="true" value={this.state.user.password} placeholder="Password"/>
+        <span id="passworderror" style={{color:"red", display:"none"}}>Password must have at least one digit (length 5-20)</span>
       </FormGroup>
       </Col>
       <Col lg="4"></Col>

@@ -92,7 +92,7 @@ handleEmail = (e) => {
          }
     })
 if(patterns.email.test(e.target.value)){
-  document.getElementById("emailerror").style.display="none";
+  document.getElementById("emailerrorr").style.display="none";
   this.setState({
     ...this.state,
        user:{
@@ -105,6 +105,7 @@ if(patterns.email.test(e.target.value)){
          }
     })
 } else{
+  document.getElementById("emailerrorr").style.display="block";
   console.log("plz enter correct email")
   this.setState({
     ...this.state,
@@ -117,7 +118,6 @@ if(patterns.email.test(e.target.value)){
            emailValid:false
          }
     })
-  document.getElementById("emailerror").style.display="block";
 }
 }
 handleContact = (e) => {
@@ -207,7 +207,7 @@ handleSubmit = (e) => {
       console.log(this.state.user);
         e.preventDefault();
         if(this.state.validation.nameValid && this.state.validation.emailValid && this.state.validation.contactValid && this.state.validation.passwordValid){
-        fetch("http://localhost:3002/login/user",
+        fetch("http://localhost:3002/signup/student",
         {
             method : "Post", 
             headers : {
@@ -215,10 +215,9 @@ handleSubmit = (e) => {
             },
             body : JSON.stringify(this.state.user)
         }).then((result) => {result.json().then((res)=>{
+          console.log(res.recurring_email);
+          if(!res.recurring_email){
           alert("A new student created Successfully")
-          // this.props.history.push('/home')
-          // console.log(this.props.history.push('../home'));
-          // {return <Redirect push to="/home" />} 
           this.setState({
             ...this.state,
                user:{
@@ -229,6 +228,10 @@ handleSubmit = (e) => {
                  },
             isRedirect:true
             })
+          } else{
+          document.getElementById("emailerrorr").style.display="block";
+          document.getElementById("emailerrorr").innerHTML = "This email allready exist..";
+          }
         }) 
     })
     console.log(this.state.user);
@@ -266,7 +269,7 @@ handleSubmit = (e) => {
             {/* <Label for="restaurantEmail">Email</Label> */}
             <Input type="email" name="email"
             onChange={this.handleEmail} id="restEmail" required="true" value={this.state.user.email} placeholder="Email" />
-            <span id="emailerror" style={{color:"red", display:"none"}}>Enter correct Email</span>
+            <span id="emailerrorr" style={{color:"red", display:"none"}}>Enter correct Email</span>
           </FormGroup>
         </Col>
       </Row>
@@ -291,7 +294,7 @@ handleSubmit = (e) => {
       </Col>
       <Col lg="4"></Col>
      </Row>
-     <Row >
+     <Row>
       <Col lg="4"></Col>
       <Col lg="4">
       {/* <FormGroup> */}

@@ -18,6 +18,7 @@ import Footer from "./components/footer/Footer"
 import Createtutor from "./components/tutor/Create-tutor.component";
 import Studentloginsignup from "./components/student/Create-student.component";
 import Tutordash from "./Tutordash";
+import Studentdash from "./Studentdash";
 import Info from "./components/Info";
 import Home from "./components/Home";
 
@@ -41,10 +42,13 @@ function App() {
       {/* <Route exat path="/Tutordash">
 <Tutordash />
       </Route> */}
+      {/* <Route exat path="/Studentdash">
+      <Tutordash />
+      </Route> */}
       <Row className="footer pt-5 mt-5">
         <Footer />
       </Row>
-      </Router>
+      </Router> 
     </div>
   ); 
 } 
