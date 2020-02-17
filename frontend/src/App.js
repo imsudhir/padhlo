@@ -17,8 +17,8 @@ import TopHeader from "./components/header/TopHeader"
 import Footer from "./components/footer/Footer"
 import Createtutor from "./components/tutor/Create-tutor.component";
 import Studentloginsignup from "./components/student/Create-student.component";
-import Tutordash from "./Tutordash";
-import Studentdash from "./Studentdash";
+import Tutordash from "./route/Tutordash";
+import Studentdash from "./route/Studentdash";
 import Info from "./components/Info";
 import Home from "./components/Home";
 
@@ -42,9 +42,9 @@ function App() {
       {/* <Route exat path="/Tutordash">
 <Tutordash />
       </Route> */}
-      {/* <Route exat path="/Studentdash">
+      <Route exat path="/Studentdash">
       <Tutordash />
-      </Route> */}
+      </Route>
       <Row className="footer pt-5 mt-5">
         <Footer />
       </Row>

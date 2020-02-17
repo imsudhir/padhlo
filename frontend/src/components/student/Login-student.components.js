@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import React, { Component } from 'react';
+import axios from 'axios'; 
 import {container,  TabContent, TabPane, Nav, NavItem,
    NavLink, Card, Button, CardTitle, CardText, Row, Col, 
    Table, Form, FormGroup, Label, 
@@ -11,7 +12,7 @@ import {container,  TabContent, TabPane, Nav, NavItem,
     contact:/^(\+\d{2,4})?\s?(\d{10})$/,
     password:/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z@0-9]+){5,20}$/,
   }
-  
+
 class Studentlogin extends Component {
   constructor(){
     super(); 
@@ -27,7 +28,23 @@ class Studentlogin extends Component {
       isRedirect:false
     }
 }
-   
+
+login_auth(){
+  axios.post("http://localhost:3002/login", {
+    "email":this.state.user.email,
+    "password":this.state.user.password
+   })
+    .then(response => {
+      console.log(response)
+      if(response.user_exist){
+        this.setState({
+        isRedirect: true
+        })
+      }
+    })
+    .catch(error => this.setState({ error, isLoading: false }));
+}
+
 handleEmail = (e) => {
   console.log(e.target.value);
   this.setState({
@@ -41,7 +58,7 @@ handleEmail = (e) => {
         }
    })
 if(patterns.email.test(e.target.value)){
- document.getElementById("emailerrorr").style.display="none";
+ document.getElementById("emailerror").style.display="none";
  this.setState({
    ...this.state,
       user:{
@@ -54,7 +71,7 @@ if(patterns.email.test(e.target.value)){
         }
    })
 } else{
- document.getElementById("emailerrorr").style.display="block";
+ document.getElementById("emailerror").style.display="block";
  console.log("plz enter correct email")
  this.setState({
    ...this.state,
@@ -113,29 +130,18 @@ if(patterns.password.test(e.target.value)){
 }
 
 handleSubmit = (e) => {
+
+//.........................................................
+    
       console.log(this.state);
         e.preventDefault();
-        if(this.state.nameValid && this.state.emailValid && this.state.ratingValid && this.state.addressValid){
-        fetch("http://localhost:3002/login",
-        {
-            method : "Post", 
-            headers : {
-                'Content-Type':'application/json'
-            },
-            body : JSON.stringify(this.state)
-        }).then((result) => {result.json().then((res)=>{
-          alert("New User created Successfully")
-        })
-    })
-    console.log(this.state);
-  }else{
-      alert("Please Enter All required entry");
-    }
-  }
+        if(this.state.validation.emailValid && this.state.validation.passwordValid){        
+        this.login_auth();
+        }}
    
     render() {
         return (
-    <div>
+    <React.Fragment>
     <Form  onSubmit = {this.handleSubmit}>
     <h1>Student</h1>
     {/* <container> */}
@@ -144,8 +150,7 @@ handleSubmit = (e) => {
         <Col lg="4">
         <FormGroup>
             {/* <Label for="restaurantEmail">Email</Label> */}
-            <Input type="email" name="email"
-            onChange={this.handleEmail} id="restEmail" required="true" value={this.state.user.email} placeholder="Email" />
+            <Input type="email" name="email" onChange={this.handleEmail} id="stdloginEmail" required={true} value={this.state.user.email} placeholder="Email" />
             <span id="emailerror" style={{color:"red", display:"none"}}>Enter correct Email</span>
           </FormGroup>
         </Col>
@@ -155,7 +160,7 @@ handleSubmit = (e) => {
       <Col lg="4">
       <FormGroup>
         {/* <Label for="restaurantAddress">Address</Label> */}
-        <Input type="password" name="address" onChange={this.handlePassword} id="restddress" required="true" value={this.state.user.password} placeholder="Password"/>
+        <Input type="password" name="stdloginpass" onChange={this.handlePassword} id="stdloginpass" autoComplete="off" required={true} value={this.state.user.password} placeholder="Password"/>
         <span id="passworderror" style={{color:"red", display:"none"}}>Password must have at least one digit (length 5-20)</span>
       </FormGroup>
       </Col>
@@ -172,7 +177,7 @@ handleSubmit = (e) => {
      </Row>
     {/* </container> */}
     </Form>
-    </div>
+    </React.Fragment>
         );
     } 
 }

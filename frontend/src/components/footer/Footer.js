@@ -23,7 +23,6 @@ function Footer() {
             <p>Rz-123 Manas Kunj Road Uttam Nager, Delhi</p>
           </Col>
     </React.Fragment>
-   
   ); 
 } 
 

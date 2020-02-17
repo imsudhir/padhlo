@@ -1,13 +1,13 @@
 import React from 'react';
 import { Column, Row } from 'simple-flexbox';
 import { StyleSheet, css } from 'aphrodite';
-import SidebarComponent from './components/student/studentdashboard/sidebar/SidebarComponent';
-import HeaderComponent from './components/student/studentdashboard/header/HeaderComponent';
-import ContentComponent from './components/student/studentdashboard/content/ContentComponent';
-import './App.css';
+import SidebarComponent from '../components/tutor/tutordashboard/sidebar/SidebarComponent';
+import HeaderComponent from '../components/tutor/tutordashboard/header/HeaderComponent';
+import ContentComponent from '../components/tutor/tutordashboard/content/ContentComponent';
+import '../App.css';
 
 const styles = StyleSheet.create({
-    container: { 
+    container: {
         height: '100%',
         minHeight: '100vh'
     },
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     }
 });
 
-class Studentdash extends React.Component {
+class Tutordash extends React.Component {
 
     state = { selectedItem: 'Tickets' };
 
@@ -50,4 +50,4 @@ render() {
 }
 }
 
-export default Studentdash;
+export default Tutordash;

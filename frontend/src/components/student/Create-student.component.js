@@ -175,7 +175,7 @@ handlePassword = (e) => {
          }
     })
 if(patterns.password.test(e.target.value)){
-  document.getElementById("passworderror").style.display="none";
+  document.getElementById("stdpassworderror").style.display="none";
   this.setState({
     ...this.state,
        user:{
@@ -200,7 +200,7 @@ if(patterns.password.test(e.target.value)){
            passwordValid:false
          }
     })
-  document.getElementById("passworderror").style.display="block";
+  document.getElementById("stdpassworderror").style.display="block";
 }
 }
 handleSubmit = (e) => {
@@ -242,7 +242,7 @@ handleSubmit = (e) => {
   }
    render() {
         return (
-    <div>
+    <React.Fragment>
       {this.state.isRedirect ? (
         <React.Fragment>
         {alert("Redireting..")}
@@ -257,7 +257,7 @@ handleSubmit = (e) => {
         <Col lg="4">
         <FormGroup>
             {/* <Label for="restaurantName">Name</Label> */}
-            <Input type="text" name="name" onChange={this.handleName} id="name" required="true" value={this.state.user.name} placeholder="Name" />
+            <Input type="text" name="name" onChange={this.handleName} id="name" required={true} value={this.state.user.name} placeholder="Name" />
             <span id="nameerror" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 5 chars)</span>
         </FormGroup>
           </Col>
@@ -268,7 +268,7 @@ handleSubmit = (e) => {
         <FormGroup>
             {/* <Label for="restaurantEmail">Email</Label> */}
             <Input type="email" name="email"
-            onChange={this.handleEmail} id="restEmail" required="true" value={this.state.user.email} placeholder="Email" />
+            onChange={this.handleEmail} id="signupEmail" required={true} value={this.state.user.email} placeholder="Email" />
             <span id="emailerrorr" style={{color:"red", display:"none"}}>Enter correct Email</span>
           </FormGroup>
         </Col>
@@ -278,7 +278,7 @@ handleSubmit = (e) => {
       <Col lg="4">
       <FormGroup>
         {/* <Label for="restaurantContact">Contact</Label> */}
-        <Input type="text" name="contact" min="1" max="5" onChange={this.handleContact} id="restcontact" required="true" value={this.state.user.contact} placeholder="Contact"/>
+        <Input type="text" name="contact" min="1" max="5" onChange={this.handleContact} id="signupcontact" required={true} value={this.state.user.contact} placeholder="Contact"/>
         <span id="contacterror" style={{color:"red", display:"none"}}>Enter correct contact</span>
       </FormGroup>
       </Col>
@@ -288,8 +288,8 @@ handleSubmit = (e) => {
       <Col lg="4">
       <FormGroup>
         {/* <Label for="restaurantAddress">Address</Label> */}
-        <Input type="password" name="address" onChange={this.handlePassword} id="restddress" required="true" value={this.state.user.password} placeholder="Password"/>
-        <span id="passworderror" style={{color:"red", display:"none"}}>Password must have at least one digit (length 5-20)</span>
+        <Input type="password" name="address" onChange={this.handlePassword} autoComplete="off" id="signpassword" required={true} value={this.state.user.password} placeholder="Password"/>
+        <span id="stdpassworderror" style={{color:"red", display:"none"}}>Password must have at least one digit (length 5-20)</span>
       </FormGroup>
       </Col>
       <Col lg="4"></Col>
@@ -307,7 +307,7 @@ handleSubmit = (e) => {
     {/* </container> */}
     </Form>
 
-    </div>
+    </React.Fragment>
         );
     } 
 }
@@ -321,7 +321,7 @@ const Studentloginsignup = (props) => {
   }
 
   return (
-    <div>
+    <React.Fragment>
 
         <Row className="mt-3">
             <Col lg="4">
@@ -384,7 +384,7 @@ const Studentloginsignup = (props) => {
           </Row>
         </TabPane>
       </TabContent>
-    </div>
+    </React.Fragment>
   );
 }
 

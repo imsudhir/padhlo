@@ -48,7 +48,7 @@ app.post('/signup/student', (req, res) => {
            };
     // console.log(data.email);
     // console.log(data);
-    if (!data.name || !data.email || !data.contact || !data.password) {
+    if (!data.email || !data.password) {
         console.log("errrrrr....")
         return res.status(400).send({ error: user, message: 'Please provide all details'});
     }
@@ -70,7 +70,7 @@ app.post('/signup/student', (req, res) => {
                   "status": 200, 
                   "error": null,
                   "message":true, 
-                  "response": results 
+                  "response": results  
                  }));
             }); 
          }
@@ -87,7 +87,6 @@ app.post('/signup/student', (req, res) => {
     } 
 });
  
-
 app.post('/login', function (req, res) {
     const data = req.body;
     console.log(data)
@@ -98,10 +97,11 @@ app.post('/login', function (req, res) {
     const login = "SELECT `email` , `role_id` FROM `user_pl` WHERE `email` = ? && `password` = ?"
     const query = dbCon.query(login, [data.email, data.password],(err, results) => {
       if(err) throw err;
+      console.log(results)
       if(results.length){
       res.send(JSON.stringify( 
           {
-          "status": 200, 
+          "status": 200,
           "error": null,
           "message":true,
           "user_exist":true, 
@@ -116,11 +116,12 @@ app.post('/login', function (req, res) {
                 "user_exist":false, 
                 "response": results
                }));
-        }
+        } 
     });
     }
  });
-  
+
+ 
 app.get('/', function (req, res) { 
 return res.send({
     error:true, 
