@@ -13,10 +13,10 @@ let patterns = {
   contact:/^(\+\d{2,4})?\s?(\d{10})$/,
   password:/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z@0-9]+){5,20}$/,
 }
-
+// alert(localStorage.getItem('login_auth_token'))
 class Createstudent extends Component {
       constructor(){
-          super(); 
+          super();  
           this.state = {
               user:{
                   name:'',

@@ -1,4 +1,5 @@
 var express = require('express');
+var jwt = require('jsonwebtoken')
 var app = express();
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -11,7 +12,7 @@ const port =3002;
 // import routes 
  app.use(bodyParser.urlencoded(
     { 
-    extended:true
+    extended:true 
     } 
  ));
 //  var storage = multer.diskStorage({
@@ -36,6 +37,21 @@ const port =3002;
 //connect to db  
 dbCon.connect();
 //retrive all tutor list 
+app.get('/user/tutor', function (req, res) {
+    dbCon.query('SELECT * FROM `user_pl`', function (error, results, fields) {
+        if (error) throw error;
+        return res.send({ error: false, data: results, message: 'users list.' });
+    });
+ 
+ });
+
+ app.get('/user/student', function (req, res) {
+    dbCon.query('SELECT * FROM `user_pl`  WHERE `role_id` = 10 ?', function (error, results, fields) {
+        if (error) throw error;
+        return res.send({ error: false, data: results, message: 'users list.' });
+    });
+ 
+ });
 
 //................user login signup api................
 app.post('/signup/student', (req, res) => { 
@@ -70,7 +86,7 @@ app.post('/signup/student', (req, res) => {
                   "status": 200, 
                   "error": null,
                   "message":true, 
-                  "response": results  
+                  "response": results
                  }));
             }); 
          }
@@ -89,6 +105,7 @@ app.post('/signup/student', (req, res) => {
  
 app.post('/login', function (req, res) {
     const data = req.body;
+    const token = jwt.sign({data}, 'jwt_secret_key')
     console.log(data)
     if (!data.email || !data.password) { 
         console.log("errrrrr....")
@@ -105,7 +122,8 @@ app.post('/login', function (req, res) {
           "error": null,
           "message":true,
           "user_exist":true, 
-          "response": results
+          "response": results,
+          "token":token
          }));
         } else{
             res.send(JSON.stringify( 
@@ -114,7 +132,9 @@ app.post('/login', function (req, res) {
                 "error": null,
                 "message":true,
                 "user_exist":false, 
-                "response": results
+                "response": results,
+                "token":null
+
                }));
         } 
     });
