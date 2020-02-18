@@ -30,7 +30,7 @@ export default class Createtutor extends Component {
     // Do something when 'Signup by email' is clicked
     const data = { 
       name: username,
-      email:email,
+      email:email, 
       password: password
     };
     fetch('http://localhost:3002/addtutor', { 

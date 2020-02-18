@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { string } from 'prop-types';
 import { Row } from 'simple-flexbox';
 import { StyleSheet, css } from 'aphrodite';
@@ -65,11 +65,12 @@ const styles = StyleSheet.create({
     }
 });
 
-function HeaderComponent(props) {
-    const { icon, title, ...otherProps } = props;
+class TutorDashHeaderComponent extends Component{
+    
+    render(){ 
     return (
-        <Row className={css(styles.container)} vertical="center" horizontal="space-between" {...otherProps}>
-            <span className={css(styles.title)}>{title}</span>
+        <Row className={css(styles.container)} vertical="center" horizontal="space-between" {...this.otherProps}>
+            <span className={css(styles.title)}></span>
             <Row vertical="center">
                 <div className={css(styles.iconStyles)}>
                     <IconSearch />
@@ -85,10 +86,11 @@ function HeaderComponent(props) {
             </Row>
         </Row>
     );
+    }
 }
 
-HeaderComponent.propTypes = {
+TutorDashHeaderComponent.propTypes = {
     title: string
 };
 
-export default HeaderComponent;
+export default TutorDashHeaderComponent;

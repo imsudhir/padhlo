@@ -12,7 +12,7 @@ import IconArticles from '../../../../assets/icon-articles';
 import IconSettings from '../../../../assets/icon-settings';
 import IconSubscription from '../../../../assets/icon-subscription';
 import IconBurger from '../../../../assets/icon-burger';
-
+import Link2 from './Abc'
 const styles = StyleSheet.create({
     burgerIcon: {
         cursor: 'pointer',
@@ -74,12 +74,13 @@ const styles = StyleSheet.create({
 class SidebarComponent extends React.Component {
 
     state = { expanded: false };
+  
 
     onItemClicked = (item) => {
         this.setState({ expanded: false });
         return this.props.onChange(item);
-    }
-
+}
+ 
     isMobile = () => window.innerWidth <= 768;
 
     toggleMenu = () => this.setState(prevState => ({ expanded: !prevState.expanded }));
@@ -100,7 +101,20 @@ class SidebarComponent extends React.Component {
                     <Column className={css(styles.container)} breakpoints={{ 768: css(styles.containerMobile, expanded ? styles.show : styles.hide) }}>
                         <LogoComponent />
                         <Column className={css(styles.menuItemList)}>
-                            <MenuItemComponent
+
+                            
+                            <MenuItemComponent 
+                             onClick={() => this.onItemClicked('item')} 
+                             onClick={() => this.onItemClicked('Overview')}
+                             />
+                            {/* <MenuItemComponent1 
+                            onClick={() => this.onItemClicked('item')} 
+                            onClick={() => this.onItemClicked('Overview')} */}
+
+                             />
+                            {/* <MenuItemComponent 
+                             onClick={() => this.onItemClicked()} /> */}
+                            {/* <MenuItemComponent
                                 title="Overview" icon={IconOverview}
                                 onClick={() => this.onItemClicked('Overview')}
                                 active={this.props.selectedItem === 'Overview'}
@@ -130,11 +144,11 @@ class SidebarComponent extends React.Component {
                             <MenuItemComponent
                                 title="Settings" icon={IconSettings}
                                 onClick={() => this.onItemClicked('Settings')}
-                                active={this.props.selectedItem === 'Settings'} />
-                            <MenuItemComponent
+                                active={this.props.selectedItem === 'Settings'} /> */}
+                            {/* <MenuItemComponent
                                 title="Subscription" icon={IconSubscription}
                                 onClick={() => this.onItemClicked('Subscription')}
-                                active={this.props.selectedItem === 'Subscription'} />
+                                active={this.props.selectedItem === 'Subscription'} /> */}
                         </Column>
                     </Column>
                     {isMobile && expanded && <div className={css(styles.outsideLayer)} onClick={this.toggleMenu}></div>}

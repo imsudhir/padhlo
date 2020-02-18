@@ -1,10 +1,4 @@
 import React from 'react';
-import { Column } from 'simple-flexbox';
-import { StyleSheet, css } from 'aphrodite/no-important';
-import MiniCardComponent from './MiniCardComponent';
-import TodayTrendsComponent from './TodayTrendsComponent';
-import UnresolvedTicketsComponent from './UnresolvedTicketsComponent';
-import TasksComponent from './TasksComponent';
 import {
     container,
     Table,
@@ -13,51 +7,7 @@ import {
     Col,
     Button, Form, FormGroup, Label, Input, FormText
   } from 'reactstrap';
-  import {
-    BrowserRouter as Router,
-    Route,
-    Link
-  } from 'react-router-dom';
-const styles = StyleSheet.create({
-    cardsContainer: {
-        marginRight: -30,
-        marginTop: -30
-    },
-    cardRow: {
-        marginTop: 30,
-        '@media (max-width: 768px)': {
-            marginTop: 0
-        }
-    },
-    miniCardContainer: {
-        flexGrow: 1,
-        marginRight: 30,
-        '@media (max-width: 768px)': {
-            marginTop: 30,
-            maxWidth: 'none'
-        }
-    },
-    todayTrends: {
-        marginTop: 30
-    },
-    lastRow: {
-        marginTop: 30
-    },
-    unresolvedTickets: {
-        marginRight: 30,
-        '@media (max-width: 1024px)': {
-            marginRight: 0
-        }
-    },
-    tasks: {
-        marginTop: 0,
-        '@media (max-width: 1024px)': {
-            marginTop: 30,
-        }
-    }
-});
-
-const Example = (props) => {
+ const Link2 = (props) => {
     return (
         <Row form inline>
         {/* <Col lg="4"></Col>
@@ -101,22 +51,4 @@ const Example = (props) => {
     );
   }
   
-
-
-function ContentComponent() {
-    return (
-  
-            <Row className={css(styles.cardsContainer)} wrap flexGrow={1} horizontal="space-between" break points={{ 768: 'column' }}>
-               <Col> 
-               {/* <Row className={css(styles.cardRow)} wrap flexGrow={1} horizontal="space-between" breakpoints={{ 384: 'column' }}>
-                    <Example className={css(styles.miniCardContainer)} title="Unresolved" value="60" />
-                </Row> */}
-                    <Example />
-
-                </Col>
-            </Row>
-    )
-               
-}
-
-export default ContentComponent;
+  export default Link2

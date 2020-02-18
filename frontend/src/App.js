@@ -12,6 +12,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+
 import NavigationLink from "./components/header/NavLink"
 import TopHeader from "./components/header/TopHeader"
 import Footer from "./components/footer/Footer"
@@ -27,9 +28,9 @@ function App() {
     <div className="App container-fluid" style={{}}>
       <Router>
       <Row className="mt-3 top" className="topheader" >
-        <TopHeader />
+        {/* <TopHeader /> */}
       </Row>
-      <NavigationLink />
+      {/* <NavigationLink /> */}
       <Route path="/home">
       <Home />
       </Route>
@@ -42,7 +43,7 @@ function App() {
       {/* <Route exat path="/Tutordash">
 <Tutordash />
       </Route> */}
-      <Route exat path="/Studentdash">
+      <Route  path="/tutdashboard">
       <Tutordash />
       </Route>
       <Row className="footer pt-5 mt-5">

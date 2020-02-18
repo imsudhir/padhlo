@@ -25,7 +25,7 @@ function LogoComponent() {
     return (
         <Row className={css(styles.container)} horizontal="center" vertical="center">
             <Logo />
-            <span className={css(styles.title)}>Dashboard Kit</span>
+            <span className={css(styles.title)}>Padh lo</span>
         </Row>
     );
 }
