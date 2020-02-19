@@ -1,9 +1,11 @@
 import React from 'react';
+import {Component}from 'react';
 // import { Column, Row } from 'simple-flexbox';
 import { StyleSheet, css } from 'aphrodite';
 import SidebarComponent from '../components/tutor/tutordashboard/sidebar/SidebarComponent';
 import TutorDashHeaderComponent from '../components/tutor/tutordashboard/header/TutordashHeaderComponent';
-import ContentComponent from '../components/tutor/tutordashboard/content/ContentComponent';
+import ContentComponent from '../components/tutor/tutordashboard/content/Courseupload';
+import Courseupload from '../components/tutor/tutordashboard/content/Courseupload';
 import '../App.css';
 import {Col, Row } from 'reactstrap'
 import {
@@ -26,8 +28,14 @@ const styles = StyleSheet.create({
         padding: 30
     }
 });
-
-class Tutordash extends React.Component {
+const ContentComponent1=()=>{
+    return(
+        <div>
+            <h1>link1</h1>
+        </div>
+    )
+}
+class Tutordash extends Component {
 
     state = { selectedItem: 'Tickets' };
     constructor(){
@@ -58,8 +66,8 @@ render() {
                 {/* <ContentComponent /> */}
                  
                 {/* <Router> */}
-                <Route path="/tutdashboard/upload" component={ContentComponent} />
-                <Route path="/tutdashboard/link1" component={ContentComponent} />
+                <Route path="/tutdashboard/upload" component={Courseupload} />
+                <Route path="/tutdashboard/list" component={ContentComponent1} />
                 <Route path="/tutdashboard/link2" component={ContentComponent} />
                 {/* </Router> */}
 

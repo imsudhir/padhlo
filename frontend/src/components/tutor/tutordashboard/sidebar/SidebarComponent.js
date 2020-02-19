@@ -1,8 +1,16 @@
 import React from 'react';
-import { Column, Row } from 'simple-flexbox';
+import {
+    container,
+    Table,
+    Card,
+    Row,
+    Col,
+    Button, Form, FormGroup, Label, Input, FormText
+  } from 'reactstrap';
+// import { Column, Row } from 'simple-flexbox';
 import { StyleSheet, css } from 'aphrodite';
 import LogoComponent from './LogoComponent';
-import MenuItemComponent from './MenuItemComponent';
+import Viewcourse from './View.courses';
 import IconOverview from '../../../../assets/icon-overview.js';
 import IconTickets from '../../../../assets/icon-tickets.js';
 import IconIdeas from '../../../../assets/icon-ideas.js';
@@ -12,7 +20,9 @@ import IconArticles from '../../../../assets/icon-articles';
 import IconSettings from '../../../../assets/icon-settings';
 import IconSubscription from '../../../../assets/icon-subscription';
 import IconBurger from '../../../../assets/icon-burger';
-import Link2 from './Abc'
+import Courseuploadmenu from './Courses.upload.menu'
+import Courseupload from '../content/Courseupload'
+
 const styles = StyleSheet.create({
     burgerIcon: {
         cursor: 'pointer',
@@ -71,6 +81,8 @@ const styles = StyleSheet.create({
     }
 });
 
+
+
 class SidebarComponent extends React.Component {
 
     state = { expanded: false };
@@ -98,59 +110,19 @@ class SidebarComponent extends React.Component {
             <div style={{ position: 'relative' }}>
                 <Row className={css(styles.mainContainer)} breakpoints={{ 768: css(styles.mainContainerMobile, expanded && styles.mainContainerExpanded) }}>
                     {(isMobile && !expanded) && this.renderBurger()}
-                    <Column className={css(styles.container)} breakpoints={{ 768: css(styles.containerMobile, expanded ? styles.show : styles.hide) }}>
+                    <Col className={css(styles.container)} breakpoints={{ 768: css(styles.containerMobile, expanded ? styles.show : styles.hide) }}>
                         <LogoComponent />
-                        <Column className={css(styles.menuItemList)}>
-
-                            
-                            <MenuItemComponent 
-                             onClick={() => this.onItemClicked('item')} 
-                             onClick={() => this.onItemClicked('Overview')}
-                             />
-                            {/* <MenuItemComponent1 
+                        <Col className={css(styles.menuItemList)}>
+                        <Viewcourse 
                             onClick={() => this.onItemClicked('item')} 
-                            onClick={() => this.onItemClicked('Overview')} */}
-
+                            onClick={() => this.onItemClicked('Overview')}
+                            />
+                        <Courseuploadmenu 
+                            onClick={() => this.onItemClicked('item')} 
+                            onClick={() => this.onItemClicked('Overview')}
                              />
-                            {/* <MenuItemComponent 
-                             onClick={() => this.onItemClicked()} /> */}
-                            {/* <MenuItemComponent
-                                title="Overview" icon={IconOverview}
-                                onClick={() => this.onItemClicked('Overview')}
-                                active={this.props.selectedItem === 'Overview'}
-                            />
-                            <MenuItemComponent
-                                title="Tickets" icon={IconTickets}
-                                onClick={() => this.onItemClicked('Tickets')}
-                                active={this.props.selectedItem === 'Tickets'}
-                            />
-                            <MenuItemComponent
-                                title="Ideas" icon={IconIdeas}
-                                onClick={() => this.onItemClicked('Ideas')}
-                                active={this.props.selectedItem === 'Ideas'} />
-                            <MenuItemComponent
-                                title="Contacts" icon={IconContacts}
-                                onClick={() => this.onItemClicked('Contacts')}
-                                active={this.props.selectedItem === 'Contacts'} />
-                            <MenuItemComponent
-                                title="Agents" icon={IconAgents}
-                                onClick={() => this.onItemClicked('Agents')}
-                                active={this.props.selectedItem === 'Agents'} />
-                            <MenuItemComponent
-                                title="Articles" icon={IconArticles}
-                                onClick={() => this.onItemClicked('Articles')}
-                                active={this.props.selectedItem === 'Articles'} />
-                            <div className={css(styles.separator)}></div>
-                            <MenuItemComponent
-                                title="Settings" icon={IconSettings}
-                                onClick={() => this.onItemClicked('Settings')}
-                                active={this.props.selectedItem === 'Settings'} /> */}
-                            {/* <MenuItemComponent
-                                title="Subscription" icon={IconSubscription}
-                                onClick={() => this.onItemClicked('Subscription')}
-                                active={this.props.selectedItem === 'Subscription'} /> */}
-                        </Column>
-                    </Column>
+                        </Col>
+                    </Col>
                     {isMobile && expanded && <div className={css(styles.outsideLayer)} onClick={this.toggleMenu}></div>}
                 </Row>
             </div>
