@@ -6,6 +6,7 @@ import SidebarComponent from '../components/tutor/tutordashboard/sidebar/Sidebar
 import TutorDashHeaderComponent from '../components/tutor/tutordashboard/header/TutordashHeaderComponent';
 import ContentComponent from '../components/tutor/tutordashboard/content/Courseupload';
 import Courseupload from '../components/tutor/tutordashboard/content/Courseupload';
+import Createnewcourse from '../components/tutor/tutordashboard/content/Createnewcourse'
 import '../App.css';
 import {Col, Row } from 'reactstrap'
 import {
@@ -60,13 +61,14 @@ render() {
     return (
         <Row className={css(styles.container)}>
             <SidebarComponent selectedItem={selectedItem} onChange={(selectedItem) => this.setState({ selectedItem })} />
-            <Col flexGrow={1} className={css(styles.mainBlock)}>
+            <Col flexGrow={2} className={css(styles.mainBlock)}>
                 <TutorDashHeaderComponent title={selectedItem} />
                 <div className={css(styles.content)}>
                 {/* <ContentComponent /> */}
                  
                 {/* <Router> */}
                 <Route path="/tutdashboard/upload" component={Courseupload} />
+                <Route path="/tutdashboard/new" component={Createnewcourse} />
                 <Route path="/tutdashboard/list" component={ContentComponent1} />
                 <Route path="/tutdashboard/link2" component={ContentComponent} />
                 {/* </Router> */}

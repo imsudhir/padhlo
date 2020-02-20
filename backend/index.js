@@ -33,7 +33,7 @@ const port =3002;
      database: 'padhlo_db'
  });
  
-
+ 
 //connect to db  
 dbCon.connect();
 //retrive all tutor list 

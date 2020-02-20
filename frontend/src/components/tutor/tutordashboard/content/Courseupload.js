@@ -72,7 +72,7 @@ class Courseupload extends Component {
             user:{
                 name:'',
                 email:'',
-                contact:'', 
+                contact:'',
                 password:''
             },
             validation:{
@@ -171,163 +171,121 @@ handleSubmit = (e) => {
       return (
           <React.Fragment>
   <Form  onSubmit = {this.handleSubmit}>
-  <h1>Student</h1>
-  {/* <container> */}
-  <Row form >
+  <h1>Upload Files</h1>
+  <container >
     <FormGroup>
-              {/* <Label for="restaurantName">Name</Label> */}
-              {/* <Input type="text" name="name"  id="name" required={true} value="" laceholder="Name" />
-              <span id="nameerror" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 5 chars)</span> */}
-            <Input type="select" bsSize="md">
-                <option>SElect category</option>
+            <Input type="select">
+              <option>Select category</option>
                 <optgroup label="php">Php</optgroup>
-                <option>&nbsp; &nbsp;&nbsp;&nbsp;core php</option>
-                <option>&nbsp; &nbsp;&nbsp;&nbsp;advance php</option>
+                  <option>&nbsp; &nbsp;&nbsp;&nbsp;core php</option>
+                  <option>&nbsp; &nbsp;&nbsp;&nbsp;advance php</option>
                 <optgroup label="php framework"></optgroup>
-
-                <option>&nbsp; &nbsp;&nbsp;&nbsp;CodeIgniter</option>
-                <option>&nbsp; &nbsp;&nbsp;&nbsp;Laravel</option>
+                  <option>&nbsp; &nbsp;&nbsp;&nbsp;CodeIgniter</option>
+                  <option>&nbsp; &nbsp;&nbsp;&nbsp;Laravel</option>
                 <optgroup label="Graphic design">Php</optgroup>
-                
-                <option>&nbsp; &nbsp;&nbsp;&nbsp;Adobe</option>
-                <option>&nbsp; &nbsp;&nbsp;&nbsp;Illusterater</option>
+                  <option>&nbsp; &nbsp;&nbsp;&nbsp;Adobe</option>
+                  <option>&nbsp; &nbsp;&nbsp;&nbsp;Illusterater</option>
             </Input>
           </FormGroup>
-      </Row>
-  <Row form >
-    {/* <Col lg="4"></Col> */}
-      <Col lg="4">
-      <FormGroup>
-          {/* <Label for="restaurantName">Name</Label> */}
-          <Input type="text" name="name" onChange={this.handleName} id="name" required={true} value={this.state.user.name} placeholder="Name" />
-          <span id="nameerror" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 5 chars)</span>
-      </FormGroup>
-        </Col>
-  </Row>
-    <Row form >
-    <Col lg="4"></Col>
-      <Col lg="4">
-      <FormGroup>
-          {/* <Label for="restaurantName">Name</Label> */}
-          <Input type="text" name="name" onChange={this.handleName} id="name" required={true} value={this.state.user.name} placeholder="Name" />
-          <span id="nameerror" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 5 chars)</span>
-      </FormGroup>
-        </Col>
-  </Row>
-    <Row form>
-    <Col lg="4"></Col>
-      <Col lg="4">
-      <FormGroup>
-          {/* <Label for="restaurantEmail">Email</Label> */}
-            <span id="emailerrorr" style={{color:"red", display:"none"}}>Enter correct Email</span>
+        <FormGroup>  
+          <Input type="select" bsSize="md">
+              <option>Select Course</option>
+              <optgroup label="php">Php</optgroup>
+                <option>&nbsp; &nbsp;&nbsp;&nbsp;core php</option>
+                <option>&nbsp; &nbsp;&nbsp;&nbsp;advance php</option>
+              <optgroup label="php framework"></optgroup>
+                <option>&nbsp; &nbsp;&nbsp;&nbsp;CodeIgniter</option>
+                <option>&nbsp; &nbsp;&nbsp;&nbsp;Laravel</option>
+              <optgroup label="Graphic design">Php</optgroup>
+                <option>&nbsp; &nbsp;&nbsp;&nbsp;Adobe</option>
+                <option>&nbsp; &nbsp;&nbsp;&nbsp;Illusterater</option>
+          </Input>
         </FormGroup>
-      </Col>
-    </Row>
-    <Row form>
-    <Col lg="4"></Col>
-    <Col lg="4">
-    <FormGroup>
-      {/* <Label for="restaurantContact">Contact</Label> */}
-       <span id="contacterror" style={{color:"red", display:"none"}}>Enter correct contact</span>
-    </FormGroup>
-    </Col>
-   </Row>
-   <Row form>
-    <Col lg="4"></Col>
-    <Col lg="4">
-    <FormGroup>
-     <span id="stdpassworderror" style={{color:"red", display:"none"}}>Password must have at least one digit (length 5-20)</span>
-    </FormGroup>
-    </Col>
-    <Col lg="4"></Col>
-   </Row>
-   <Row>
-    <Col lg="4"></Col>
-    <Col lg="4">
-    {/* <FormGroup> */}
-   <Button color="primary" size="md" block>Sign up</Button>
-    {/* </FormGroup> */}
-    </Col>
-    <Col lg="4"></Col>
-   </Row>
-
-  {/* </container> */}
+      <FormGroup>
+          <Input type="text" name="tutorial_title" onChange={this.handleTitle} id="name" required={true} value={this.state.user.name} placeholder="Title" />
+          <span id="nameerror" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 5 chars)</span>
+      </FormGroup>
+      <FormGroup>
+           <Input type="file" name="name" onChange={this.handleName} id="name" required={true} value={this.state.user.name} placeholder="Name" />
+          <span id="nameerror" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 5 chars)</span>
+      </FormGroup>
+   <Button color="primary" size="md" block>Upload</Button>
+  </container>
   </Form>
-
   </React.Fragment>
       );
   } 
 }
 
-class Courseupload1 extends Component {
+// class Courseupload1 extends Component {
 
-    render(){
-    return (
-        <Row form inline>
-        {/* <Col lg="4"></Col>
-          <Col lg="4"> */}
-          <FormGroup>
-              {/* <Label for="restaurantName">Name</Label> */}
-              {/* <Input type="text" name="name"  id="name" required={true} value="" laceholder="Name" />
-              <span id="nameerror" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 5 chars)</span> */}
-                <Input type="select" bsSize="md">
-                <option>SElect category</option>
-                <optgroup label="php">Php</optgroup>
-                <option>&nbsp; &nbsp;&nbsp;&nbsp;core php</option>
-                <option>&nbsp; &nbsp;&nbsp;&nbsp;advance php</option>
-                <optgroup label="php framework"></optgroup>
+//     render(){
+//     return (
+//         <Row form inline>
+//         {/* <Col lg="4"></Col>
+//           <Col lg="4"> */}
+//           <FormGroup>
+//               {/* <Label for="restaurantName">Name</Label> */}
+//               {/* <Input type="text" name="name"  id="name" required={true} value="" laceholder="Name" />
+//               <span id="nameerror" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 5 chars)</span> */}
+//                 <Input type="select" bsSize="md">
+//                 <option>SElect category</option>
+//                 <optgroup label="php">Php</optgroup>
+//                 <option>&nbsp; &nbsp;&nbsp;&nbsp;core php</option>
+//                 <option>&nbsp; &nbsp;&nbsp;&nbsp;advance php</option>
+//                 <optgroup label="php framework"></optgroup>
 
-                <option>&nbsp; &nbsp;&nbsp;&nbsp;CodeIgniter</option>
-                <option>&nbsp; &nbsp;&nbsp;&nbsp;Laravel</option>
-                <optgroup label="Graphic design">Php</optgroup>
+//                 <option>&nbsp; &nbsp;&nbsp;&nbsp;CodeIgniter</option>
+//                 <option>&nbsp; &nbsp;&nbsp;&nbsp;Laravel</option>
+//                 <optgroup label="Graphic design">Php</optgroup>
                 
-                <option>&nbsp; &nbsp;&nbsp;&nbsp;Adobe</option>
-                <option>&nbsp; &nbsp;&nbsp;&nbsp;Illusterater</option>
-            </Input>
-          </FormGroup>
+//                 <option>&nbsp; &nbsp;&nbsp;&nbsp;Adobe</option>
+//                 <option>&nbsp; &nbsp;&nbsp;&nbsp;Illusterater</option>
+//             </Input>
+//           </FormGroup>
       
-          <FormGroup>
-              {/* <Label for="restaurantName">Name</Label> */}
-              <Input type="text" name="name"  id="name" required={true}  laceholder="Name" />
-              {/* <span id="nameerror" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 5 chars)</span> */}
-          </FormGroup>
-          <FormGroup>
-              {/* <Label for="restaurantName">Name</Label> */}
-              <Input type="text" name="name"  id="name" required={true} laceholder="Name" />
-              {/* <span id="nameerror" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 5 chars)</span> */}
-          </FormGroup>
+//           <FormGroup>
+//               {/* <Label for="restaurantName">Name</Label> */}
+//               <Input type="text" name="name"  id="name" required={true}  laceholder="Name" />
+//               {/* <span id="nameerror" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 5 chars)</span> */}
+//           </FormGroup>
+//           <FormGroup>
+//               {/* <Label for="restaurantName">Name</Label> */}
+//               <Input type="text" name="name"  id="name" required={true} laceholder="Name" />
+//               {/* <span id="nameerror" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 5 chars)</span> */}
+//           </FormGroup>
           
-          <FormGroup>
-              {/* <Label for="restaurantName">Name</Label> */}
-              <Input type="text" name="name"  id="name" required={true}  laceholder="Name" />
-              {/* <span id="nameerror" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 5 chars)</span> */}
-          </FormGroup>
-          <FormGroup>
-          <Button color="primary"> Submit</Button>
-           </FormGroup>
-            {/* </Col> */}
+//           <FormGroup>
+//               {/* <Label for="restaurantName">Name</Label> */}
+//               <Input type="text" name="name"  id="name" required={true}  laceholder="Name" />
+//               {/* <span id="nameerror" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 5 chars)</span> */}
+//           </FormGroup>
+//           <FormGroup>
+//           <Button color="primary"> Submit</Button>
+//            </FormGroup>
+//             {/* </Col> */}
 
-      </Row>
-    )
-  }
-}
+//       </Row>
+//     )
+//   }
+// }
    
 
 
-function ContentComponent() {
-    return (
+// function ContentComponent() {
+//     return (
   
-            <Row className={css(styles.cardsContainer)} wrap flexGrow={1} horizontal="space-between" break points={{ 768: 'column' }}>
-               <Col> 
-               {/* <Row className={css(styles.cardRow)} wrap flexGrow={1} horizontal="space-between" breakpoints={{ 384: 'column' }}>
-                    <Example className={css(styles.miniCardContainer)} title="Unresolved" value="60" />
-                </Row> */}
-                    {/* <Example /> */}
+//             <Row className={css(styles.cardsContainer)} wrap flexGrow={1} horizontal="space-between" break points={{ 768: 'column' }}>
+//                <Col> 
+//                {/* <Row className={css(styles.cardRow)} wrap flexGrow={1} horizontal="space-between" breakpoints={{ 384: 'column' }}>
+//                     <Example className={css(styles.miniCardContainer)} title="Unresolved" value="60" />
+//                 </Row> */}
+//                     {/* <Example /> */}
 
-                </Col>
-            </Row>
-    )
+//                 </Col>
+//             </Row>
+//     )
                
-}
+// }
 
 export default Courseupload;

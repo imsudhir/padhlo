@@ -22,6 +22,7 @@ import IconSubscription from '../../../../assets/icon-subscription';
 import IconBurger from '../../../../assets/icon-burger';
 import Courseuploadmenu from './Courses.upload.menu'
 import Courseupload from '../content/Courseupload'
+import Createnewcoursemenu from './Create.newcourse.menu'
 
 const styles = StyleSheet.create({
     burgerIcon: {
@@ -117,11 +118,16 @@ class SidebarComponent extends React.Component {
                             onClick={() => this.onItemClicked('item')} 
                             onClick={() => this.onItemClicked('Overview')}
                             />
+                        <Createnewcoursemenu 
+                            onClick={() => this.onItemClicked('item')} 
+                            onClick={() => this.onItemClicked('Overview')}
+                        />
                         <Courseuploadmenu 
                             onClick={() => this.onItemClicked('item')} 
                             onClick={() => this.onItemClicked('Overview')}
                              />
                         </Col>
+                     
                     </Col>
                     {isMobile && expanded && <div className={css(styles.outsideLayer)} onClick={this.toggleMenu}></div>}
                 </Row>
