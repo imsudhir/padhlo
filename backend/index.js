@@ -3,9 +3,9 @@ var jwt = require('jsonwebtoken')
 var app = express();
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var mysql =require('mysql');
-const multer=require('multer')
-const upload =multer({dest:'./uploads'})
+var mysql = require('mysql');
+const multer = require('multer')
+const upload = multer({dest:'./uploads'})
 app.use(bodyParser.json())
 app.use(cors());
 const port =3002;
@@ -15,16 +15,16 @@ const port =3002;
     extended:true 
     } 
  ));
-//  var storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//       cb(null, './uploads')
-//     },
-//     filename: function (req, file, cb) {
-//       cb(null, Date.now() + file.originalname)
-//     }
-//   })
+ var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() +"sudhir"+ file.originalname)
+    }
+  })
   
-//   var upload = multer({ storage: storage })
+  var upload_file = multer({ storage: storage })
 // connection configs 
  const dbCon = mysql.createConnection({
      host: 'localhost',
@@ -155,6 +155,51 @@ return res.send({
     msg:"hello this is sudhir ..."
 }) 
 })
+// upload files
+// app.post('/uploadfile', upload.single('tut_file'), (req, res, next) => {
+//     const file = req.file
+//     console.log(file.path)
+//     if (!file) {
+//       const error = new Error('Please upload a file')
+//       error.httpStatusCode = 400
+//       return next(error)
+//     }
+//       res.send(file)
+    
+//   })
+
+//upload file 
+app.post('/uploadfile', upload_file.single('demo_file'), (req, res) => {
+    let data =  JSON.parse(JSON.stringify(req.body))
+    console.log(req.file);
+    console.log(data)
+    var course_upload = {
+        title: data.title, 
+        course_name: data.course_title,
+        description:data.course_description,
+        file_name:req.file.originalname,
+        demo_file:req.file.path,
+        cat_id:data.cat_id,
+        user_id:data.user_id
+    }
+    console.log(course_upload)
+    if (!data.title || !data.course_name || !req.file.path) {
+        console.log("errrrrr....") 
+        return res.status(400).send({ error: require-field, message: 'Please provide all details'});
+    } else { 
+       let upload_sql = "INSERT INTO `courses_pl` SET ?";
+       let upload_query = dbCon.query(upload_sql, course_upload, (err, results) => {
+         if(err) throw err;
+         res.send(JSON.stringify(
+             {
+             "status": 200, 
+             "error": null, 
+             "message":true,
+             "response": results
+            }));
+       });
+    } 
+     });
 
 app.listen(port,()=>{
     console.log("server is running at :" + port)
