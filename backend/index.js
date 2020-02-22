@@ -169,7 +169,36 @@ return res.send({
 //   })
 
 //upload file 
-app.post('/uploadfile', upload_file.single('demo_file'), (req, res) => {
+app.post('/uploadfile', upload.single('file_name'), (req, res) => {
+    let data =  JSON.parse(JSON.stringify(req.body))
+    console.log(req.file); 
+    console.log(data)
+     
+    if (!data.demo_file || !data.course_title) {
+        console.log("errrrrr....") 
+        return res.status(400).send({ error: require-field, message: 'Please provide all details'});
+    } else { 
+       let sql = "INSERT INTO `courses_pl` SET ?";
+       let query = dbCon.query(sql,
+         {
+            cat_id:data.cat_id,
+            file_name:data.demo_file,
+            demo_file:"uploads/"+data.demo_file,
+            course_name: data.course_title
+        },(err, results) => {
+         if(err) throw err;
+         res.send(JSON.stringify(
+             {
+             "status": 200, 
+             "error": null, 
+             "message":true,
+             "response": results
+            }));
+       });
+    } 
+     });
+
+app.post('/uploadfiles', upload_file.single('demo_file'), (req, res) => {
     let data =  JSON.parse(JSON.stringify(req.body))
     console.log(req.file);
     console.log(data)
@@ -180,7 +209,7 @@ app.post('/uploadfile', upload_file.single('demo_file'), (req, res) => {
         file_name:req.file.originalname,
         demo_file:req.file.path,
         cat_id:data.cat_id,
-        user_id:data.user_id
+        user_id:data.user_id 
     }
     console.log(course_upload)
     if (!data.title || !data.course_name || !req.file.path) {

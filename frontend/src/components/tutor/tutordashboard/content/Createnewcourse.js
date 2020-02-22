@@ -69,9 +69,10 @@ class Createnewcourse extends Component {
         super();  
         this.state = {
             course:{
+                cat_id:'',              
                 course_title:'',
                 course_description:'',
-                demo_file:'',
+                demo_file:''
             },
             validation:{
                 course_titleValid:false,
@@ -81,7 +82,19 @@ class Createnewcourse extends Component {
           isRedirect:false
         }
     }
-
+    handleCategory = (e) =>{
+      // alert(e.target.value);
+      this.setState({
+        ...this.state,
+           course:{
+             ...this.state.course,
+             cat_id:e.target.value 
+           },
+          validation:{
+               ...this.state.validation
+             }
+        }) 
+    }
     handleCourse_Title = (e) => {
     this.setState({
       ...this.state,
@@ -264,14 +277,13 @@ render() {
   <Form  onSubmit = {this.handleCreateCourse}>
   <h1>Create New Course</h1>
     <FormGroup>
-      <Input type="select">
+      <Input type="select" onChange={this.handleCategory} >
           <option>Select category</option>
           <optgroup label="php">Php</optgroup>
-              <option>&nbsp; &nbsp;&nbsp;&nbsp;core php</option>
-              <option>&nbsp; &nbsp;&nbsp;&nbsp;advance php</option>
-          <optgroup label="php framework"></optgroup>
-              <option>&nbsp; &nbsp;&nbsp;&nbsp;CodeIgniter</option>
-              <option>&nbsp; &nbsp;&nbsp;&nbsp;Laravel</option>
+              <option value="1">&nbsp; &nbsp;&nbsp;&nbsp;core php</option>
+                <option value="2">&nbsp; &nbsp;&nbsp;&nbsp;CodeIgniter</option>
+               <option value="5">&nbsp; &nbsp;&nbsp;&nbsp;Cake php</option>
+              <option value="6">&nbsp; &nbsp;&nbsp;&nbsp;Laravel</option>
           <optgroup label="Graphic design">Php</optgroup>
               <option>&nbsp; &nbsp;&nbsp;&nbsp;Adobe</option>
               <option>&nbsp; &nbsp;&nbsp;&nbsp;Illusterater</option>
