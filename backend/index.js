@@ -186,7 +186,7 @@ app.post('/uploadfile', upload.single('file_name'), (req, res) => {
             demo_file:"uploads/"+data.demo_file,
             course_name: data.course_title
         },(err, results) => {
-         if(err) throw err;
+         if(err) throw err; 
          res.send(JSON.stringify(
              {
              "status": 200, 
@@ -229,6 +229,53 @@ app.post('/uploadfiles', upload_file.single('demo_file'), (req, res) => {
        });
     } 
      });
+//..........
+
+var storage1 = multer.diskStorage({
+    destination: function (req, file, cb) {
+    cb(null, '../frontend/src/uploads')
+  }, 
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' +file.originalname )
+  }
+})
+ var upload1 = multer({ storage: storage1 }).single('file')
+
+app.post('/upload',function(req, res) {   
+    upload1(req, res, function (err) {
+    console.log(req.body)  
+    console.log(req.file)  
+           if (err instanceof multer.MulterError) {
+               return res.status(500).json(err)
+           } else if (err) {
+               return res.status(500).json(err)
+           }
+
+           let sql2 = "INSERT INTO `courses_pl` SET ?";
+           let query = dbCon.query(sql2,
+             {
+                cat_id:1, 
+                file_name:req.file.originalname,
+                demo_file:"../uploads/"+req.file.path,
+                course_name: req.body.course_title,
+                description:req.body.course_description
+            },(err, results) => {
+                if(err) throw err; 
+                res.send(JSON.stringify(
+                    {
+                    "status": 200, 
+                    "error": null, 
+                    "message":true,
+                    "response": results
+                   }));
+              });
+           } 
+            
+
+
+    )
+
+});
 
 app.listen(port,()=>{
     console.log("server is running at :" + port)

@@ -1,5 +1,8 @@
 import React from 'react';
 import {Component}from 'react';
+import axios from 'axios';
+import logo from '../logo.svg';
+ 
 // import { Column, Row } from 'simple-flexbox';
 import { StyleSheet, css } from 'aphrodite';
 import SidebarComponent from '../components/tutor/tutordashboard/sidebar/SidebarComponent';
@@ -8,7 +11,12 @@ import ContentComponent from '../components/tutor/tutordashboard/content/Courseu
 import Courseupload from '../components/tutor/tutordashboard/content/Courseupload';
 import Createnewcourse from '../components/tutor/tutordashboard/content/Createnewcourse'
 import '../App.css';
-import {Col, Row } from 'reactstrap'
+// import {Col, Row } from 'reactstrap'
+import {
+    Col, Row ,
+    Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button
+  } from 'reactstrap';
 import {
     BrowserRouter as Router,
     Route,
@@ -29,13 +37,64 @@ const styles = StyleSheet.create({
         padding: 30
     }
 });
-const ContentComponent1=()=>{
+
+
+class ContentComponent1 extends Component {
+    constructor(props) {
+        super(props);
+          this.state = {
+            selectedFile: null
+          }
+       
+      }
+   
+    onChangeHandleri=event=>{
+        this.setState({
+          selectedFile: event.target.files[0],
+          loaded: 0
+        })
+        // console.log(this.state)
+        console.log(event.target.files[0])
+    const imagess = '1582430158218-Annotation 2020-01-26 104802.png';
+
+      }
+    //   onClickHandler = () => {
+    //     const data = new FormData() 
+    //     data.append('file', this.state.selectedFile)
+    // }
+     onClickHandler = () => {
+
+        const data = new FormData()
+        data.append('file', this.state.selectedFile)
+       console.log(data)
+
+        axios.post("http://localhost:3002/upload", data, { 
+           // receive two    parameter endpoint url ,form data
+       })
+       .then(res => { // then print response status
+        console.log(res.statusText)
+     })
+    }
+render() {
+    console.log(this.state)
     return(
         <div>
-            <h1>link1</h1>
-        </div>
+            <input type="file" name="file" onChange={this.onChangeHandleri}/>
+            <button type="button" class="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button> 
+        <Card>            
+        {/* <CardImg top width="100%" src="https://miro.medium.com/max/1080/1*Z3KL8VZdP7bcmEy9YsZGKg.png" /> */}
+        {/* <CardImg top width="100%" src={require('../uploads/582788499716-Annotation 2020-01-26 113335')} /> */}
+        <CardImg top width="100%" src={require('../uploads/1582818187613-11111.png')} />
+        <CardBody>
+          <CardTitle>Card title</CardTitle>
+          <CardSubtitle>Card subtitle</CardSubtitle>
+          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+          <Button>Button</Button>
+        </CardBody> 
+      </Card>
+       </div>
     )
-}
+}}
 class Tutordash extends Component {
 
     state = { selectedItem: 'Tickets' };

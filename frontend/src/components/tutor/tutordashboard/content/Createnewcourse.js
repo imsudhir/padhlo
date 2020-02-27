@@ -5,6 +5,8 @@ import MiniCardComponent from './MiniCardComponent';
 import TodayTrendsComponent from './TodayTrendsComponent';
 import UnresolvedTicketsComponent from './UnresolvedTicketsComponent';
 import TasksComponent from './TasksComponent';
+import axios from 'axios'; 
+
 import {
     container,
     Table,
@@ -72,7 +74,8 @@ class Createnewcourse extends Component {
                 cat_id:'',              
                 course_title:'',
                 course_description:'',
-                demo_file:''
+                selectedFile: null
+                // demo_file:''
             },
             validation:{
                 course_titleValid:false,
@@ -108,8 +111,8 @@ class Createnewcourse extends Component {
       }) 
       console.log(this.state.course.course_title);
 
-    console.log(this.state.course)
-    console.log(this.state.validation.nameValid)
+    // console.log(this.state.course)
+    // console.log(this.state.validation.nameValid)
   if(patterns.course_title.test(e.target.value)){
     document.getElementById("course_title_error").style.display="none";
     this.setState({
@@ -151,9 +154,9 @@ handleCourse_desc = (e) => {
              ...this.state.validation
            }
       }) 
-    console.log(this.state.course.course_description);
-    console.log(this.state.course)
-    console.log(this.state.validation.course_descriptionValid)
+    // console.log(this.state.course.course_description);
+    // console.log(this.state.course)
+    // console.log(this.state.validation.course_descriptionValid)
   if(patterns.course_description.test(e.target.value)){
     document.getElementById("course_description_error").style.display="none";
     this.setState({
@@ -183,7 +186,27 @@ handleCourse_desc = (e) => {
     document.getElementById("course_description_error").style.display="block";
   }
 }
-handleDemo_file = (e)=> {
+handleDemo_file=event=>{
+ 
+
+  this.setState({
+    ...this.state,
+       course:{
+         ...this.state.course,
+         selectedFile: event.target.files[0],
+
+        },
+      validation:{
+           ...this.state.validation,
+         },
+      loaded: 0         
+    }) 
+  console.log(this.state.course.selectedFile)
+  // console.log(event.target.files[0])
+ 
+}
+
+handleDemo_file1 = (e)=> {
   alert(e.target.value.replace("C:\\fakepath\\", ""));
   this.setState({
     ...this.state,
@@ -200,9 +223,9 @@ handleDemo_file = (e)=> {
 
     var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
   
-  console.log(this.state.course.course_description);
-  console.log(this.state.course)
-  console.log(this.state.validation.course_descriptionValid)
+  // console.log(this.state.course.course_description);
+  // console.log(this.state.course)
+  // console.log(this.state.validation.course_descriptionValid)
 if(patterns.allowedExtensions.test(e.target.value)){
   document.getElementById("demo_file_error").style.display="none";
   this.setState({
@@ -230,23 +253,43 @@ if(patterns.allowedExtensions.test(e.target.value)){
     }) 
   console.log("plz enter correct plz upload correct file")
   document.getElementById("demo_file_error").style.display="block";
-}
+} 
 }
 
 handleCreateCourse = (e)=>{
 alert(JSON.stringify(this.state.course));
 e.preventDefault();
+// const data = new FormData()
+// data.append('file', this.state.selectedFile)
 if(this.state.validation.course_titleValid && this.state.validation.course_descriptionValid){
-fetch("http://localhost:3002/uploadfile",
-{
-    method : "Post", 
-    headers : {
-        'Content-Type':'application/json'
-    },
-    body : JSON.stringify(this.state.course)
-}).then((result) => {result.json().then((res)=>{
-  console.log(res);
-  console.log("response from api");
+
+  const data = new FormData()
+  data.append('course_title', this.state.course.course_title)
+  data.append('course_description', this.state.course.course_description)
+  data.append('file', this.state.course.selectedFile)
+  // const data1= data.append('file', this.state.selectedFile)
+  // const data27= data1.append('file', this.state.course.demo_file)
+  // console.log(data)
+  console.log(JSON.stringify(data)) 
+  // console.log(this.state.selectedFile)
+  axios.post("http://localhost:3002/upload", data, {
+      // receive two parameter endpoint url ,form data
+      // console.log(data3)
+  })
+  .then(res => { // then print response status
+   console.log(res.statusText)
+})
+
+// fetch("http://localhost:3002/uploadfile",
+// {
+//     method : "Post", 
+//     headers : {
+//         'Content-Type':'application/json'
+//     },
+//     body : JSON.stringify(this.state.course)
+// }).then((result) => {result.json().then((res)=>{
+//   console.log(res);
+//   console.log("response from api");
   // if(!res.recurring_email){
   // alert("A new student created Successfully")
   // this.setState({
@@ -263,9 +306,9 @@ fetch("http://localhost:3002/uploadfile",
   // document.getElementById("emailerrorr").style.display="block";
   // document.getElementById("emailerrorr").innerHTML = "This email allready exist..";
   // }
-}) 
-})
-console.log(this.state.course);
+// }) 
+// })
+// console.log(this.state.course);
 
 }else{
 alert("Please Enter All required entry");
@@ -298,7 +341,9 @@ render() {
             <span id="course_description_error" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 20 to 200 chars)</span>
         </FormGroup>
         <FormGroup>
-            <Input type="file" name="demo_file" onChange={this.handleDemo_file} id="demo_file" required={true} placeholder="upload file" />
+        <input type="file" name="file" onChange={this.handleDemo_file}/>
+            
+            {/* <Input type="file" name="demo_file" onChange={this.handleDemo_file} id="demo_file" required={true} placeholder="upload file" /> */}
             <span id="demo_file_error" style={{color:"red", display:"none"}}>Enter correct File</span>
         </FormGroup>
         <Button type="submit" color="primary" size="md" block>Create</Button>
