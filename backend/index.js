@@ -243,20 +243,19 @@ var storage1 = multer.diskStorage({
 
 app.post('/upload',function(req, res) {   
     upload1(req, res, function (err) {
-    console.log(req.body)  
+    console.log(req.body)   
     console.log(req.file)  
            if (err instanceof multer.MulterError) {
                return res.status(500).json(err)
            } else if (err) {
                return res.status(500).json(err)
            }
-
            let sql2 = "INSERT INTO `courses_pl` SET ?";
            let query = dbCon.query(sql2,
              {
-                cat_id:1, 
+                cat_id:req.body.cat_id,  
                 file_name:req.file.originalname,
-                demo_file:"../uploads/"+req.file.path,
+                demo_file:"../uploads/"+req.file.filename,
                 course_name: req.body.course_title,
                 description:req.body.course_description
             },(err, results) => {
@@ -267,11 +266,11 @@ app.post('/upload',function(req, res) {
                     "error": null, 
                     "message":true,
                     "response": results
-                   }));
+                   })); 
               });
            } 
             
-
+  
 
     )
 

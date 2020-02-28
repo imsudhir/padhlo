@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Column } from 'simple-flexbox';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import MiniCardComponent from './MiniCardComponent';
@@ -10,7 +12,7 @@ import axios from 'axios';
 import {
     container,
     Table,
-    Card,
+    Card, 
     Row,
     Col,
     Button, Form, FormGroup, Label, Input, FormText, Alert
@@ -65,6 +67,20 @@ let patterns = {
     course_description:/^[a-z\d ]{20,200}$/i,
     allowedExtensions:/(\.jpg|\.jpeg|\.png|\.gif)$/i
   }
+  const initialState = {
+    course:{
+      cat_id:'',              
+      course_title:'',
+      course_description:'',
+      selectedFile: null
+      // demo_file:''
+  },
+  validation:{
+      course_titleValid:false,
+      course_descriptionValid:false,
+      demo_fileValid:false,
+},
+isRedirect:false };
 
 class Createnewcourse extends Component {
     constructor(){
@@ -86,7 +102,7 @@ class Createnewcourse extends Component {
         }
     }
     handleCategory = (e) =>{
-      // alert(e.target.value);
+      alert(e.target.value);
       this.setState({
         ...this.state,
            course:{
@@ -97,6 +113,7 @@ class Createnewcourse extends Component {
                ...this.state.validation
              }
         }) 
+        console.log(this.state)
     }
     handleCourse_Title = (e) => {
     this.setState({
@@ -154,9 +171,6 @@ handleCourse_desc = (e) => {
              ...this.state.validation
            }
       }) 
-    // console.log(this.state.course.course_description);
-    // console.log(this.state.course)
-    // console.log(this.state.validation.course_descriptionValid)
   if(patterns.course_description.test(e.target.value)){
     document.getElementById("course_description_error").style.display="none";
     this.setState({
@@ -187,8 +201,7 @@ handleCourse_desc = (e) => {
   }
 }
 handleDemo_file=event=>{
- 
-
+  alert(event.target.value)
   this.setState({
     ...this.state,
        course:{
@@ -218,14 +231,7 @@ handleDemo_file1 = (e)=> {
            ...this.state.validation
          }
     }) 
-    // var fileInput = document.getElementById('file');
-    // var filePath = fileInput.value;
-
     var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-  
-  // console.log(this.state.course.course_description);
-  // console.log(this.state.course)
-  // console.log(this.state.validation.course_descriptionValid)
 if(patterns.allowedExtensions.test(e.target.value)){
   document.getElementById("demo_file_error").style.display="none";
   this.setState({
@@ -250,7 +256,7 @@ if(patterns.allowedExtensions.test(e.target.value)){
            ...this.state.validation,
            demo_fileValid:false
          }
-    }) 
+    })
   console.log("plz enter correct plz upload correct file")
   document.getElementById("demo_file_error").style.display="block";
 } 
@@ -259,60 +265,52 @@ if(patterns.allowedExtensions.test(e.target.value)){
 handleCreateCourse = (e)=>{
 alert(JSON.stringify(this.state.course));
 e.preventDefault();
-// const data = new FormData()
-// data.append('file', this.state.selectedFile)
+console.log(this.state)
 if(this.state.validation.course_titleValid && this.state.validation.course_descriptionValid){
 
   const data = new FormData()
+  data.append('cat_id', this.state.course.cat_id)
   data.append('course_title', this.state.course.course_title)
   data.append('course_description', this.state.course.course_description)
   data.append('file', this.state.course.selectedFile)
-  // const data1= data.append('file', this.state.selectedFile)
-  // const data27= data1.append('file', this.state.course.demo_file)
-  // console.log(data)
   console.log(JSON.stringify(data)) 
   // console.log(this.state.selectedFile)
   axios.post("http://localhost:3002/upload", data, {
       // receive two parameter endpoint url ,form data
       // console.log(data3)
   })
-  .then(res => { // then print response status
-   console.log(res.statusText)
+.then(res => { 
+  console.log(res)
+  if(res.status===200){ 
+  toast.success('Successfully Created New post')
+  // this.reset();
+  }
 })
-
-// fetch("http://localhost:3002/uploadfile",
-// {
-//     method : "Post", 
-//     headers : {
-//         'Content-Type':'application/json'
-//     },
-//     body : JSON.stringify(this.state.course)
-// }).then((result) => {result.json().then((res)=>{
-//   console.log(res);
-//   console.log("response from api");
-  // if(!res.recurring_email){
-  // alert("A new student created Successfully")
-  // this.setState({
-  //   ...this.state,
-  //      user:{
-  //        ...this.state.user,  
-  //      },
-  //     validation:{
-  //          ...this.state.validation,
-  //        },
-  //   isRedirect:true
-  //   })
-  // } else{
-  // document.getElementById("emailerrorr").style.display="block";
-  // document.getElementById("emailerrorr").innerHTML = "This email allready exist..";
-  // }
-// }) 
-// })
-// console.log(this.state.course);
+.catch(err => { 
+  toast.error('upload failed')
+})
 
 }else{
 alert("Please Enter All required entry");
 }
+}
+reset = () =>{
+  this.setState({
+course:{
+      cat_id:'',              
+      course_title:'',
+      course_description:'',
+      selectedFile: null 
+      // demo_file:''
+  },
+  validation:{
+      course_titleValid:false,
+      course_descriptionValid:false,
+      demo_fileValid:false
+},
+isRedirect:false
+
+  })
 }
 render() {
   return (
@@ -320,7 +318,7 @@ render() {
   <Form  onSubmit = {this.handleCreateCourse}>
   <h1>Create New Course</h1>
     <FormGroup>
-      <Input type="select" onChange={this.handleCategory} >
+      <Input type="select" onChange={this.handleCategory}>
           <option>Select category</option>
           <optgroup label="php">Php</optgroup>
               <option value="1">&nbsp; &nbsp;&nbsp;&nbsp;core php</option>
@@ -328,8 +326,8 @@ render() {
                <option value="5">&nbsp; &nbsp;&nbsp;&nbsp;Cake php</option>
               <option value="6">&nbsp; &nbsp;&nbsp;&nbsp;Laravel</option>
           <optgroup label="Graphic design">Php</optgroup>
-              <option>&nbsp; &nbsp;&nbsp;&nbsp;Adobe</option>
-              <option>&nbsp; &nbsp;&nbsp;&nbsp;Illusterater</option>
+              <option value="7">&nbsp; &nbsp;&nbsp;&nbsp;Adobe</option>
+              <option value="8">&nbsp; &nbsp;&nbsp;&nbsp;Illusterater</option>
       </Input>
         </FormGroup>
         <FormGroup>
@@ -342,7 +340,9 @@ render() {
         </FormGroup>
         <FormGroup>
         <input type="file" name="file" onChange={this.handleDemo_file}/>
-            
+        <div class="form-group">
+   <ToastContainer />
+</div>
             {/* <Input type="file" name="demo_file" onChange={this.handleDemo_file} id="demo_file" required={true} placeholder="upload file" /> */}
             <span id="demo_file_error" style={{color:"red", display:"none"}}>Enter correct File</span>
         </FormGroup>

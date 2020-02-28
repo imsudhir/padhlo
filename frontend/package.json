@@ -21,6 +21,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "react-svg-line-chart": "^2.0.2",
+    "react-toastify": "^5.5.0",
     "reactstrap": "^8.4.0",
     "simple-flexbox": "^2.3.0"
   },
