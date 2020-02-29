@@ -18,6 +18,7 @@ import TopHeader from "./components/header/TopHeader"
 import Footer from "./components/footer/Footer"
 import Createtutor from "./components/tutor/Create-tutor.component";
 import Studentloginsignup from "./components/student/Create-student.component";
+import Tutorloginsignup from "./components/tutor/Create-tutor.component";
 import Tutordash from "./route/Tutordash";
 import Studentdash from "./route/Studentdash";
 import Info from "./components/Info";
@@ -30,12 +31,15 @@ function App() {
       <Row className="mt-3 top" className="topheader" >
         {/* <TopHeader /> */}
       </Row>
-      {/* <NavigationLink /> */}
+      <NavigationLink />
       <Route path="/home">
       <Home />
       </Route>
       <Route path="/student">
         <Studentloginsignup />
+      </Route>
+      <Route path="/tutor">
+        <Tutorloginsignup />
       </Route>
       <Route path="/info">
       <Info />

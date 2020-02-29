@@ -93,6 +93,9 @@ class Createnewcourse extends Component {
                 selectedFile: null
                 // demo_file:''
             },
+            category:{
+              cat_ids:[]
+            },
             validation:{
                 course_titleValid:false,
                 course_descriptionValid:false,
@@ -113,7 +116,7 @@ class Createnewcourse extends Component {
                ...this.state.validation
              }
         }) 
-        console.log(this.state)
+        // console.log(this.state)
     }
     handleCourse_Title = (e) => {
     this.setState({
@@ -126,7 +129,9 @@ class Createnewcourse extends Component {
              ...this.state.validation
            }
       }) 
-      console.log(this.state.course.course_title);
+      // console.log(this.state.course.course_title);
+// console.log(this.state.category.cat_ids.data.data)
+
 
     // console.log(this.state.course)
     // console.log(this.state.validation.nameValid)
@@ -294,6 +299,25 @@ if(this.state.validation.course_titleValid && this.state.validation.course_descr
 alert("Please Enter All required entry");
 }
 }
+componentDidMount(){
+  axios.get("http://localhost:3002/getcat", {
+    // receive two parameter endpoint url ,form data
+    // console.log(data3)
+})
+.then(res => { 
+// console.log(res) 
+this.setState({
+  ...this.state,
+  category:{
+    cat_ids:res
+  }
+})
+console.log(this.state.category.cat_ids.data.result)
+})
+.catch(err => {
+// toast.error('upload failed')
+})
+}
 reset = () =>{
   this.setState({
 course:{
@@ -313,21 +337,39 @@ isRedirect:false
   })
 }
 render() {
+  const  {course, category, validation, isRedirect} = this.state
+  console.log(category)
+  //  {console.log(this.state.category.cat_ids.data.data)}
   return (
  <React.Fragment>
+  {/* {console.log(category)} */}
   <Form  onSubmit = {this.handleCreateCourse}>
   <h1>Create New Course</h1>
     <FormGroup>
       <Input type="select" onChange={this.handleCategory}>
           <option>Select category</option>
-          <optgroup label="php">Php</optgroup>
+          {/* {this.state.category} */}
+           {/* {!0 ? (
+            category.map(category => {
+              //  const { username, name, email } = user;
+              return (
+                <React.Fragment>
+                 <option value="2">&nbsp; &nbsp;&nbsp;&nbsp;{category.cat_id}</option>
+                </React.Fragment>
+              );
+            })
+          ) : (
+            <h3>Loading...</h3>
+          )} */}
+          {/* <optgroup label="php">Php</optgroup>
               <option value="1">&nbsp; &nbsp;&nbsp;&nbsp;core php</option>
                 <option value="2">&nbsp; &nbsp;&nbsp;&nbsp;CodeIgniter</option>
                <option value="5">&nbsp; &nbsp;&nbsp;&nbsp;Cake php</option>
               <option value="6">&nbsp; &nbsp;&nbsp;&nbsp;Laravel</option>
           <optgroup label="Graphic design">Php</optgroup>
               <option value="7">&nbsp; &nbsp;&nbsp;&nbsp;Adobe</option>
-              <option value="8">&nbsp; &nbsp;&nbsp;&nbsp;Illusterater</option>
+              <option value="8">&nbsp; &nbsp;&nbsp;&nbsp;Illusterater</option> */}
+
       </Input>
         </FormGroup>
         <FormGroup>

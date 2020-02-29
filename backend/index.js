@@ -60,7 +60,56 @@ app.post('/signup/student', (req, res) => {
               email: req.body.email,
               contact:req.body.contact,
               password:req.body.password,
-              role_id:"10"
+              role_id:"30"
+           };
+    // console.log(data.email);
+    // console.log(data);
+    if (!data.email || !data.password) {
+        console.log("errrrrr....")
+        return res.status(400).send({ error: user, message: 'Please provide all details'});
+    }
+     else
+    {
+       let duplicacy_check = "SELECT `email` FROM `user_pl` WHERE `email` = ?"
+       dbCon.query(duplicacy_check, [data.email], function (err, result) {
+        if (err) throw err;
+        var check = result;
+        var found_duplicate = result.length === 0 ? true: false
+        console.log(result.length);
+        console.log(result);
+        if(!result.length) { 
+       let sql = "INSERT INTO `user_pl` SET ?"
+            let query = dbCon.query(sql, data,(err, results) => {
+              if(err) throw err;
+              res.send(JSON.stringify( 
+                  {
+                  "status": 200, 
+                  "error": null,
+                  "message":true, 
+                  "response": results
+                 }));
+            }); 
+         }
+         else {
+                res.send(JSON.stringify( 
+                    {
+                    "status": 200, 
+                    "error": true, 
+                    "recurring_email":true,
+                    "message":"duplicate email"
+                   }));
+            }
+      });
+    } 
+});
+
+app.post('/signup/tutor', (req, res) => { 
+    let data = {
+              name: req.body.name,
+              email: req.body.email,
+              contact:req.body.contact,
+              password:req.body.password,
+              role_id:"20"
            };
     // console.log(data.email);
     // console.log(data);
@@ -155,7 +204,13 @@ app.post('/login', function (req, res) {
     });
  
  });
-
+ app.get('/getcat', function (req, res) {
+    dbCon.query('SELECT * FROM `category_pl`', function (error, results, fields) {
+        if (error) throw error;
+        return res.send({ error: false, result: results, message: 'users list.' });
+    });
+ 
+ });
 app.get('/', function (req, res) { 
 return res.send({
     error:true, 

@@ -97,13 +97,14 @@ import {
             </NavLink>  */}
           </Collapse>
           <ul>
-          <NavLink key="002" to="/student" style={{display:"block"}} tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSign}/>
-             LOGIN
-          </NavLink> 
+          <NavLink key="001" to="/student" style={{display:"block"}} tag={Link} className="mr-auto">
+            <FontAwesomeIcon icon = {faSign}/>
+             &nbsp; Learn
+          </NavLink>
           </ul>
           <ul>
-          <NavLink key="002" to="/Tutordash" style={{display:"block"}} tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSign}/>
-          Tutordash
+          <NavLink key="002" to="/tutor" style={{display:"block"}} tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSign}/>
+          &nbsp;Teach
           </NavLink> 
           </ul>
           
