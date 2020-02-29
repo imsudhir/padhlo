@@ -142,6 +142,13 @@ app.post('/login', function (req, res) {
  });
 
  app.get('/viewallcourse', function (req, res) {
+    dbCon.query('SELECT * FROM `courses_pl`  WHERE `role_id` = 10 ?', function (error, results, fields) {
+        if (error) throw error;
+        return res.send({ error: false, data: results, message: 'users list.' });
+    });
+ 
+ });
+ app.get('/viewalluser', function (req, res) {
     dbCon.query('SELECT * FROM `user_pl`  WHERE `role_id` = 10 ?', function (error, results, fields) {
         if (error) throw error;
         return res.send({ error: false, data: results, message: 'users list.' });

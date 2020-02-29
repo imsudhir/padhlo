@@ -102,7 +102,7 @@ class Createnewcourse extends Component {
         }
     }
     handleCategory = (e) =>{
-      alert(e.target.value);
+      // alert(e.target.value);
       this.setState({
         ...this.state,
            course:{
@@ -201,7 +201,7 @@ handleCourse_desc = (e) => {
   }
 }
 handleDemo_file=event=>{
-  alert(event.target.value)
+  // alert(event.target.value)
   this.setState({
     ...this.state,
        course:{
@@ -282,7 +282,7 @@ if(this.state.validation.course_titleValid && this.state.validation.course_descr
 .then(res => { 
   console.log(res)
   if(res.status===200){ 
-  toast.success('Successfully Created New post')
+  toast.success('Created Successfully')
   // this.reset();
   }
 })
