@@ -244,8 +244,7 @@ return res.send({
 app.post('/uploadfile', upload.single('file_name'), (req, res) => {
     let data =  JSON.parse(JSON.stringify(req.body))
     console.log(req.file); 
-    console.log(data)
-     
+    console.log(data)    
     if (!data.demo_file || !data.course_title) {
         console.log("errrrrr....") 
         return res.status(400).send({ error: require-field, message: 'Please provide all details'});
@@ -385,13 +384,39 @@ app.post('/uploadcourse',function(req, res) {
                    })); 
               });
            } 
-            
-  
-
     )
 
 });
+//........
 
+app.post('/youtubecourse', (req, res) => {
+    let data =  JSON.parse(JSON.stringify(req.body))
+    console.log(data)
+    var course_youtube = {
+        cat_id:data.cat_id,
+        user_id:1,
+        course_name: data.course_title,
+        description:data.course_description,
+        demo_file:data.youtube_url
+    }
+    // console.log(course_youtube)
+    if (!data.course_title || !data.course_description || !data.youtube_url) {
+        console.log("errrrrr....") 
+        return res.status(400).send({ error: require-field, message: 'Please provide all details'});
+    } else { 
+       let upload_youtube_playlist_sql = "INSERT INTO `courses_pl` SET ?";
+       let upload_query = dbCon.query(upload_youtube_playlist_sql, course_youtube, (err, results) => {
+         if(err) throw err;
+         res.send(JSON.stringify( 
+             {
+             "status": 200, 
+             "error": null, 
+             "message":true,
+             "response": results
+            }));
+       });
+    } 
+     });
 app.listen(port,()=>{
     console.log("server is running at :" + port)
     }); 

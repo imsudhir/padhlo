@@ -23,6 +23,7 @@ import IconBurger from '../../../../assets/icon-burger';
 import Courseuploadmenu from './Courses.upload.menu'
 import Courseupload from '../content/Courseupload'
 import Createnewcoursemenu from './Create.newcourse.menu'
+import Embedyoutubeplaylistemenu from './Embed.youtubeplaylist.menu'
 
 const styles = StyleSheet.create({
     burgerIcon: {
@@ -126,6 +127,10 @@ class SidebarComponent extends React.Component {
                             onClick={() => this.onItemClicked('item')} 
                             onClick={() => this.onItemClicked('Overview')}
                              />
+                        <Embedyoutubeplaylistemenu
+                        onClick={() => this.onItemClicked('item')}
+                        onClick={() => this.onItemClicked('Overview')}
+                        />
                         </Col>
                      
                     </Col>

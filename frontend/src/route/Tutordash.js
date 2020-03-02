@@ -10,6 +10,7 @@ import TutorDashHeaderComponent from '../components/tutor/tutordashboard/header/
 import ContentComponent from '../components/tutor/tutordashboard/content/Courseupload';
 import Courseupload from '../components/tutor/tutordashboard/content/Courseupload';
 import Createnewcourse from '../components/tutor/tutordashboard/content/Createnewcourse'
+import Embedyoutubeplaylist from '../components/tutor/tutordashboard/content/Embedyoutubeplaylist'
 import '../App.css';
 // import {Col, Row } from 'reactstrap'
 import {
@@ -83,7 +84,7 @@ render() {
             <button type="button" class="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button> 
         <Card>            
         {/* <CardImg top width="100%" src="https://miro.medium.com/max/1080/1*Z3KL8VZdP7bcmEy9YsZGKg.png" /> */}
-        {/* <CardImg top width="100%" src={require('../uploads/582788499716-Annotation 2020-01-26 113335')} /> */}
+        <CardImg top width="100%" src={require('../uploads/1583153201333-Capture001.png')} />
         {/* <CardImg top width="100%" src={require('../uploads/1582818187613-11111.png')} /> */}
         <CardBody>
           <CardTitle>Card title</CardTitle>
@@ -129,6 +130,7 @@ render() {
                 <Route path="/tutdashboard/upload" component={Courseupload} />
                 <Route path="/tutdashboard/new" component={Createnewcourse} />
                 <Route path="/tutdashboard/list" component={ContentComponent1} />
+                <Route path="/tutdashboard/embed" component={Embedyoutubeplaylist}/>
                 <Route path="/tutdashboard/link2" component={ContentComponent} />
                 {/* </Router> */}
 
