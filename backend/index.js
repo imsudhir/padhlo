@@ -5,10 +5,14 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var mysql = require('mysql');
 const multer = require('multer')
+const mkdirp = require('mkdirp')
 const upload = multer({dest:'./uploads'})
 app.use(bodyParser.json())
 app.use(cors());
 const port =3002;
+ 
+// SELECT tutor_pl.title FROM tutor_pl INNER JOIN courses_pl ON tutor_pl.course_id=courses_pl.course_id & courses_pl.user_id=tutor_pl.user_id =1
+
 // import routes 
  app.use(bodyParser.urlencoded(
     { 
@@ -202,14 +206,20 @@ app.post('/login', function (req, res) {
         if (error) throw error;
         return res.send({ error: false, data: results, message: 'users list.' });
     });
- 
  });
  app.get('/getcat', function (req, res) {
     dbCon.query('SELECT * FROM `category_pl`', function (error, results, fields) {
         if (error) throw error;
-        return res.send({ error: false, result: results, message: 'users list.' });
+        // return res.send({ error: false, result: results, message: 'users list.' });
+        return res.send(results);
     });
- 
+ });
+ app.get('/getcourses', function (req, res) {
+    dbCon.query('SELECT * FROM `courses_pl` WHERE `user_id` = 1', function (error, results, fields) {
+        if (error) throw error;
+        // return res.send({ error: false, result: results, message: 'users list.' });
+        return res.send(results);
+    });
  });
 app.get('/', function (req, res) { 
 return res.send({
@@ -322,6 +332,50 @@ app.post('/upload',function(req, res) {
                 description:req.body.course_description
             },(err, results) => {
                 if(err) throw err; 
+                res.send(JSON.stringify(
+                    {
+                    "status": 200, 
+                    "error": null, 
+                    "message":true,
+                    "response": results
+                   })); 
+              });
+           } 
+            
+  
+
+    )
+
+});
+//.......
+
+var storage1 = multer.diskStorage({
+    destination: function (req, file, cb) {
+    cb(null, '../frontend/src/uploads')
+  }, 
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' +file.originalname )
+  }
+})
+ var upload1 = multer({ storage: storage1 }).single('file')
+
+app.post('/uploadcourse',function(req, res) {   
+    upload1(req, res, function (err) {
+    console.log(req.body)   
+    console.log(req.file)   
+           if (err instanceof multer.MulterError) {
+               return res.status(500).json(err)
+           } else if (err) {
+               return res.status(500).json(err)
+           }
+           let upload_course_sql = "INSERT INTO `tutor_pl` SET ?";
+           let query = dbCon.query(upload_course_sql,
+             {
+                course_id:req.body.course_id,  
+                course_file:"../uploads/"+req.file.filename,
+                title: req.body.course_title
+             },(err, results) => {
+                if(err) throw err;  
                 res.send(JSON.stringify(
                     {
                     "status": 200, 

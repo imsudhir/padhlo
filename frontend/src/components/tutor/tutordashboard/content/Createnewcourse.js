@@ -62,6 +62,51 @@ const styles = StyleSheet.create({
     }
 });
 
+class Categories extends React.Component {
+  state = {
+    isLoading: true,
+    users: [],
+    error: null
+  };
+
+  fetchCategories() {
+    fetch(`http://localhost:3002/getcat`)
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          category: data,
+          isLoading: false,
+        })
+      )
+      .catch(error => this.setState({ error, isLoading: false }));
+  }
+
+  componentDidMount() {
+    this.fetchCategories();
+  }
+  
+  render() {
+    const { isLoading, category, error } = this.state;
+       return (
+      <React.Fragment>
+         {error ? <p>{error.message}</p> : null}
+        {!isLoading ? (
+          category.map(category => {
+             const { cat_id, parent_id, category_name} = category;
+            return (
+              <React.Fragment>
+            <option value={cat_id}>&nbsp; &nbsp;&nbsp;&nbsp;{category_name}</option>
+               </React.Fragment>
+            );
+          })
+        ) : (
+          <h3>Loading...</h3>
+        )}
+      </React.Fragment>
+    );
+  }
+}
+
 let patterns = {
     course_title:/^[a-z\d ]{4,20}$/i,
     course_description:/^[a-z\d ]{20,200}$/i,
@@ -299,25 +344,25 @@ if(this.state.validation.course_titleValid && this.state.validation.course_descr
 alert("Please Enter All required entry");
 }
 }
-componentDidMount(){
-  axios.get("http://localhost:3002/getcat", {
-    // receive two parameter endpoint url ,form data
-    // console.log(data3)
-})
-.then(res => { 
-// console.log(res) 
-this.setState({
-  ...this.state,
-  category:{
-    cat_ids:res
-  }
-})
-console.log(this.state.category.cat_ids.data.result)
-})
-.catch(err => {
-// toast.error('upload failed')
-})
-}
+// componentDidMount(){
+//   axios.get("http://localhost:3002/getcat", {
+//     // receive two parameter endpoint url ,form data
+//     // console.log(data3)
+// })
+// .then(res => { 
+// console.log(res.data.result) 
+// this.setState({
+//   ...this.state,
+//   category:{
+//     cat_ids:res.data.result
+//   }
+// })
+// console.log(this.state.category.cat_ids.data.result)
+// })
+// .catch(err => {
+// // toast.error('upload failed')
+// })
+// }
 reset = () =>{
   this.setState({
 course:{
@@ -333,12 +378,14 @@ course:{
       demo_fileValid:false
 },
 isRedirect:false
-
   })
 }
 render() {
-  const  {course, category, validation, isRedirect} = this.state
-  console.log(category)
+  // const  {course, category, validation, isRedirect} = this.state
+  const  {result} = this.state.category
+  // console(this.state.category.cat_ids)
+  // console.log(this.state.category.success.cat_ids)
+  // console.log(this.state.category)
   //  {console.log(this.state.category.cat_ids.data.data)}
   return (
  <React.Fragment>
@@ -347,7 +394,9 @@ render() {
   <h1>Create New Course</h1>
     <FormGroup>
       <Input type="select" onChange={this.handleCategory}>
-          <option>Select category</option>
+      <option>Select category</option>
+        {<Categories />}
+          {/* <option>Select category</option> */}
           {/* {this.state.category} */}
            {/* {!0 ? (
             category.map(category => {
@@ -356,20 +405,17 @@ render() {
                 <React.Fragment>
                  <option value="2">&nbsp; &nbsp;&nbsp;&nbsp;{category.cat_id}</option>
                 </React.Fragment>
-              );
+              ); 
             })
           ) : (
             <h3>Loading...</h3>
           )} */}
-          {/* <optgroup label="php">Php</optgroup>
-              <option value="1">&nbsp; &nbsp;&nbsp;&nbsp;core php</option>
-                <option value="2">&nbsp; &nbsp;&nbsp;&nbsp;CodeIgniter</option>
-               <option value="5">&nbsp; &nbsp;&nbsp;&nbsp;Cake php</option>
-              <option value="6">&nbsp; &nbsp;&nbsp;&nbsp;Laravel</option>
-          <optgroup label="Graphic design">Php</optgroup>
-              <option value="7">&nbsp; &nbsp;&nbsp;&nbsp;Adobe</option>
-              <option value="8">&nbsp; &nbsp;&nbsp;&nbsp;Illusterater</option> */}
-
+           {/* {this.state.category.map((cate)=>{
+          return(
+            <option value="1">&nbsp; &nbsp;&nbsp;&nbsp;core php</option>
+          )
+        })} */}
+ 
       </Input>
         </FormGroup>
         <FormGroup>
