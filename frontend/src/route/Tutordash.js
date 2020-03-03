@@ -84,7 +84,7 @@ render() {
             <button type="button" class="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button> 
         <Card>            
         {/* <CardImg top width="100%" src="https://miro.medium.com/max/1080/1*Z3KL8VZdP7bcmEy9YsZGKg.png" /> */}
-        {/* <CardImg top width="100%" src={require('../uploads/1583153201333-Capture001.png')} /> */}
+        <CardImg top width="100%" src={require('../uploads/1583153201333-Capture001.png')} />
         {/* <CardImg top width="100%" src={require('../uploads/1582818187613-11111.png')} /> */}
         <CardBody>
           <CardTitle>Card title</CardTitle>

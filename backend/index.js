@@ -158,9 +158,9 @@ app.post('/signup/tutor', (req, res) => {
  
 app.post('/login', function (req, res) {
     const data = req.body;
-    const token = jwt.sign({data}, 'jwt_secret_key',{ expiresIn: '1h' })
+    const token = jwt.sign({data}, 'jwt_secret_key')
     console.log(data)
-    if (!data.email || !data.password) {
+    if (!data.email || !data.password) { 
         console.log("errrrrr....")
         return res.status(400).send({ error: user, message: 'Account does not exist'});
     } else {
@@ -193,17 +193,7 @@ app.post('/login', function (req, res) {
     });
     }
  });
-function ensureToken(req, res, next){
-    const bearerHeader=req.headers['authorization'];
-    if(typeof bearerHeader!=='undefined'){
-        const bearer= bearerHeader.split(" ");
-        const bearerToken=bearer[1];
-        req.token=bearerToken;
-        next();
-    }else{
-        res.sendStatus(403);
-    }
-}
+
  app.get('/viewallcourse', function (req, res) {
     dbCon.query('SELECT * FROM `courses_pl`  WHERE `role_id` = 10 ?', function (error, results, fields) {
         if (error) throw error;
@@ -219,7 +209,6 @@ function ensureToken(req, res, next){
  });
  app.get('/getcat', function (req, res) {
     dbCon.query('SELECT * FROM `category_pl`', function (error, results, fields) {
-        // jwt.verify(req.token, 'jwt_secret_key', function())
         if (error) throw error;
         // return res.send({ error: false, result: results, message: 'users list.' });
         return res.send(results);
