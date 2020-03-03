@@ -202,7 +202,7 @@ function ensureToken(req, res, next){
         next();
     }else{
         res.sendStatus(403);
-    } 
+    }
 }
  app.get('/viewallcourse', function (req, res) {
     dbCon.query('SELECT * FROM `courses_pl`  WHERE `role_id` = 10 ?', function (error, results, fields) {
