@@ -23,7 +23,7 @@ import {
     DropdownItem
   } from 'reactstrap';
   import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-  import { faCoffee,faHome,faList,faPlus,faEdit,faSearch, faSign} from '@fortawesome/free-solid-svg-icons'
+  import { faCoffee,faHome,faList,faPlus,faEdit,faSearch, faSign, faLiraSign, faDollarSign, faSignInAlt} from '@fortawesome/free-solid-svg-icons'
   import Createtutor from "../tutor/Create-tutor.component";
   import Createstudent from "../student/Create-student.component";
 
@@ -96,16 +96,18 @@ import {
              LOGIN
             </NavLink>  */}
           </Collapse>
-          <ul>
+          {/* <ul>
           <NavLink key="001" to="/student" style={{display:"block"}} tag={Link} className="mr-auto">
             <FontAwesomeIcon icon = {faSign}/>
              &nbsp; Learn
           </NavLink>
-          </ul>
+          </ul> */}
           <ul>
-          <NavLink key="002" to="/tutor" style={{display:"block"}} tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSign}/>
-          &nbsp;Teach
+    {/* {(localStorage.getItem('login_auth_token')!==null) ? */}
+          <NavLink key="002" to="/tutor" style={{display:"block"}} tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSignInAlt}/>
+          &nbsp;Teach here
           </NavLink> 
+          {/* :''} */}
           </ul>
           
          </Navbar>

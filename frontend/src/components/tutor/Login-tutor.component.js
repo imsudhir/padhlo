@@ -1,5 +1,9 @@
 import classnames from 'classnames';
 import React, { Component } from 'react';
+import { Redirect, hashHistory} from 'react-router';
+// import { browserHistory } from 'react-router';
+
+
 import axios from 'axios'; 
 import {container,  TabContent, TabPane, Nav, NavItem,
    NavLink, Card, Button, CardTitle, CardText, Row, Col, 
@@ -14,8 +18,8 @@ import {container,  TabContent, TabPane, Nav, NavItem,
   }
 
 class Tutorlogin extends Component {
-  constructor(){
-    super(); 
+  constructor(props){
+    super(props); 
     this.state = {
         user:{
             email:'',
@@ -37,14 +41,14 @@ componentDidMount()
   console.log(this.state)
 
   let Auth_token = localStorage.getItem('login_auth_token'); 
-  this.setState({
-    ...this.state,
-  isLoggedin:true 
-})
+ 
   console.log(Auth_token)
   if(Auth_token){
     console.log('token found')
- 
+    this.setState({
+      ...this.state,
+    isLoggedin:true 
+  })
   } else {
     console.log('token not found')
   }
@@ -178,15 +182,24 @@ handleSubmit = (e) => {
     render() {
         return (
     <React.Fragment>
+       {this.state.isLoggedin ? (
+        <React.Fragment>
+        {/* {alert("Redireting..")} */}
+       {<Redirect push to="/tutdashboard" />} 
+        {/* {window.top.location = window.top.location} */}
+        {/* {this.props.history.push("/tutdashboard")} */}
+        {/* {hashHistory.push("/tutdashboard")} */}
+           
+         </React.Fragment>)
+       : ''}
     <Form  onSubmit = {this.handleSubmit}>
     <h1>Tutor</h1> 
     {/* <container> */}
       <Row form>
       <Col lg="4"></Col>
         <Col lg="4">
-        <FormGroup>
-            {/* <Label for="restaurantEmail">Email</Label> */}
-            <Input type="email" name="email" onChange={this.handleEmail} id="stdloginEmail" required={true} value={this.state.user.email} placeholder="Email" />
+          <FormGroup>
+             <Input type="email" name="email" onChange={this.handleEmail} id="stdloginEmail" required={true} value={this.state.user.email} placeholder="Email" />
             <span id="emailerror" style={{color:"red", display:"none"}}>Enter correct Email</span>
           </FormGroup>
         </Col>
@@ -195,8 +208,7 @@ handleSubmit = (e) => {
       <Col lg="4"></Col>
       <Col lg="4">
       <FormGroup>
-        {/* <Label for="restaurantAddress">Address</Label> */}
-        <Input type="password" name="stdloginpass" onChange={this.handlePassword} id="stdloginpass" autoComplete="off" required={true} value={this.state.user.password} placeholder="Password"/>
+         <Input type="password" name="stdloginpass" onChange={this.handlePassword} id="stdloginpass" autoComplete="off" required={true} value={this.state.user.password} placeholder="Password"/>
         <span id="passworderror" style={{color:"red", display:"none"}}>Password must have at least one digit (length 5-20)</span>
       </FormGroup>
       </Col>

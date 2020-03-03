@@ -1,6 +1,30 @@
 import React, { Component } from 'react';
 import { string } from 'prop-types';
-import { Row } from 'simple-flexbox';
+// import { Row } from 'simple-flexbox';
+import {
+    Collapse,
+    Navbar,
+    Row,
+    Col,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu, 
+    DropdownItem
+  } from 'reactstrap';
+  import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee,faHome,faList,faPlus,faEdit,faSearch, faSign, faLiraSign, faDollarSign, faSignInAlt, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
+
 import { StyleSheet, css } from 'aphrodite';
 import IconSearch from '../../../../assets/icon-search';
 import IconBellNew from '../../../../assets/icon-bell-new';
@@ -66,24 +90,18 @@ const styles = StyleSheet.create({
 });
 
 class TutorDashHeaderComponent extends Component{
-    
+    Logout = () =>{
+        localStorage.clear()
+    } 
     render(){ 
     return (
-        <Row className={css(styles.container)} vertical="center" horizontal="space-between" {...this.otherProps}>
-            <span className={css(styles.title)}></span>
-            <Row vertical="center">
-                <div className={css(styles.iconStyles)}>
-                    <IconSearch />
-                </div>
-                <div className={css(styles.iconStyles)}>
-                    <IconBellNew />
-                </div>
-                <div className={css(styles.separator)}></div>
-                <Row vertical="center">
-                    <span className={css(styles.name, styles.cursorPointer)}>Germán Llorente</span>
-                    <img src="https://avatars3.githubusercontent.com/u/21162888?s=460&v=4" alt="avatar" className={css(styles.avatar, styles.cursorPointer)} />
-                </Row>
-            </Row>
+        <Row>
+            <Col lg="10" md="10"></Col>
+            <Col lg="2" md="2">
+            <NavLink key="002" to="/home" onClick={this.Logout} style={{display:"block"}} tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSignOutAlt}/>
+            &nbsp;Logout
+            </NavLink> 
+          </Col>
         </Row>
     );
     }

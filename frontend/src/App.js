@@ -9,11 +9,13 @@ import {
 } from 'reactstrap';
 import {
   BrowserRouter as Router,
+  Switch ,
   Route,
   Link
 } from 'react-router-dom';
 
 import NavigationLink from "./components/header/NavLink"
+import { Redirect } from 'react-router';
 import TopHeader from "./components/header/TopHeader"
 import Footer from "./components/footer/Footer"
 import Createtutor from "./components/tutor/Create-tutor.component";
@@ -28,10 +30,14 @@ function App() {
   return (
     <div className="App container-fluid" style={{}}>
       <Router>
-      <Row className="mt-3 top" className="topheader" >
-        {/* <TopHeader /> */}
+    {(localStorage.getItem('login_auth_token')==null) ?
+      <React.Fragment>
+        <Row className="mt-3 top" className="topheader" >
+      <TopHeader />
       </Row>
       <NavigationLink />
+      </React.Fragment>
+      :'' }
       <Route path="/home">
       <Home />
       </Route>
@@ -47,9 +53,23 @@ function App() {
       {/* <Route exat path="/Tutordash">
 <Tutordash />
       </Route> */}
-      <Route  path="/tutdashboard">
-      <Tutordash />
-      </Route>
+       {/* {console.log(localStorage.getItem('login_auth_token'))} */}
+      
+    {
+    (localStorage.getItem('login_auth_token')!==null) ?
+    // <Route exact strict path="/tutdashboard" component={Tutordash}>
+    <Route exact strict path="/tutdashboard" 
+    render={
+      ()=>{
+      return(
+        <Tutordash/>
+      )
+      }
+    }
+    >
+    </Route>: 
+        <Redirect push to="/home" />  
+    }
       <Row className="footer pt-5 mt-5">
         <Footer />
       </Row>
