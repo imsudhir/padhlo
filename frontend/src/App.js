@@ -24,55 +24,61 @@ import Tutorloginsignup from "./components/tutor/Create-tutor.component";
 import Tutordash from "./route/Tutordash";
 import Studentdash from "./route/Studentdash";
 import Info from "./components/Info";
+import Courses from "./components/Courses";
 import Home from "./components/Home";
-function Courses(){
-  return <h1>this is courses page</h1>
-}
+
 function App() {
   return (
     <div className="App container-fluid" style={{}}>
       <Router>
         <switch>
           
-      <Route path="/">
+      <Route exact path="/">
       <Row className="mt-3 top" className="topheader" >
-      <TopHeader />
+           <TopHeader />
       </Row>
             <NavigationLink />
-      {/* <Home /> */}
+            <Home />
       </Route>
-    {(localStorage.getItem('login_auth_token')==null) ?
-      <React.Fragment>
-        {/* <Row className="mt-3 top" className="topheader" >
-      <TopHeader />
-      </Row> */}
-      {/* <NavigationLink /> */}
-      </React.Fragment>
-      :
-      <Route exact strict path="/tutdashboard">
+      {(localStorage.getItem('login_auth_token')!==null) ?
+      <Route path="/tutdashboard">
       <Tutordash/>
-      </Route>    }
+      </Route>  :''}
       
       <Route path="/home">
-      {/* <TopHeader /> */}
-      {/* <NavigationLink /> */}
-      <Home />
+        <Row className="mt-3 top" className="topheader" >
+        <TopHeader />
+        </Row>
+        <NavigationLink />
+        <Home />
       </Route>
       <Route path="/student">
         <Studentloginsignup />
       </Route>
       <Route exact strict path="/tutor">
+        <Row className="mt-3 top" className="topheader" >
+        <TopHeader />
+        </Row>
+        <NavigationLink />
         <Tutorloginsignup />
       </Route>
       <Route path="/info">
-      {/* <NavigationLink /> */}
-      <Info />
+          <Row className="mt-3 top" className="topheader" >
+          <TopHeader />
+          </Row>
+          <NavigationLink />
+          <Info />
       </Route>
       <Route path="/courses">
-      {/* <NavigationLink /> */}
+            <Row className="mt-3 top" className="topheader" >
+            <TopHeader />
+            </Row>
+            <NavigationLink />
+      <Row>
       <Courses/>
+      </Row>
       </Route>
-      {/* <Route exat path="/Tutordash">
+      {/* <Route exact path="/Tutordash">
 <Tutordash />
       </Route> */}
        

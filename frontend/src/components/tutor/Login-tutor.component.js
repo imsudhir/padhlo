@@ -2,10 +2,12 @@ import classnames from 'classnames';
 import React, { Component } from 'react';
 import { Redirect, hashHistory} from 'react-router';
 import Tutordash from "../../route/Tutordash";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content'
 
 // import { browserHistory } from 'react-router';
 
-
+ 
 import axios from 'axios'; 
 import {container,  TabContent, TabPane, Nav, NavItem,
    NavLink, Card, Button, CardTitle, CardText, Row, Col, 
@@ -25,7 +27,8 @@ class Tutorlogin extends Component {
     this.state = {
         user:{
             email:'',
-            password:''
+            password:'',
+            name:'sudhir'
         },
         validation:{
             emailValid:false,
@@ -78,7 +81,31 @@ login_auth(){
           role_id: response.data.response[0].role_id
         })
   console.log(this.state)
+  const Swal = require('sweetalert2')
+  const MySwal = withReactContent(Swal)
 
+  MySwal.fire({
+    title: <p>Hello World</p>,
+    footer: 'Copyright 2018',
+    onOpen: () => {
+      // `MySwal` is a subclass of `Swal`
+      //   with all the same instance & static methods
+      MySwal.clickConfirm()
+    }
+  }).then(() => {
+    return (
+      MySwal.fire(
+        'Dear tutor',
+        'Welcome to dashboard!',
+        'success'
+      )).then(()=>{
+        return(window.location.reload(false))
+      })
+
+  })
+  //...................
+  
+    // window.location.reload(false)
       } 
 
       console.log(this.state)
@@ -194,7 +221,7 @@ handleSubmit = (e) => {
          </React.Fragment>)
        : ''}
     <Form  onSubmit = {this.handleSubmit}>
-    <h1>Tutor</h1> 
+    <h2>Tutor</h2> 
     {/* <container> */}
       <Row form>
       <Col lg="4"></Col>

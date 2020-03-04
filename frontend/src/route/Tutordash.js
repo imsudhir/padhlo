@@ -80,20 +80,8 @@ render() {
     console.log(this.state)
     return(
         <div>
-            <input type="file" name="file" onChange={this.onChangeHandleri}/>
-            <button type="button" class="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button> 
-        <Card>            
-        {/* <CardImg top width="100%" src="https://miro.medium.com/max/1080/1*Z3KL8VZdP7bcmEy9YsZGKg.png" /> */}
-        {/* <CardImg top width="100%" src={require('../uploads/1583153201333-Capture001.png')} /> */}
-        {/* <CardImg top width="100%" src={require('../uploads/1582818187613-11111.png')} /> */}
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>Button</Button>
-        </CardBody> 
-      </Card>
-       </div>
+            <h1>Tutorial list</h1>
+        </div>
     )
 }}
 class Tutordash extends Component {
@@ -104,6 +92,7 @@ class Tutordash extends Component {
         this.state = {
             selectedItem: 'Tickets'
         }
+
     }
     componentDidMount() {
         window.addEventListener('resize', this.resize);

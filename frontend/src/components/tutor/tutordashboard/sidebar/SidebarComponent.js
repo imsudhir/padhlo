@@ -7,7 +7,7 @@ import {
     Col,
     Button, Form, FormGroup, Label, Input, FormText
   } from 'reactstrap';
-// import { Column, Row } from 'simple-flexbox';
+import { Column } from 'simple-flexbox';
 import { StyleSheet, css } from 'aphrodite';
 import LogoComponent from './LogoComponent';
 import Viewcourse from './View.courses';
@@ -24,6 +24,7 @@ import Courseuploadmenu from './Courses.upload.menu'
 import Courseupload from '../content/Courseupload'
 import Createnewcoursemenu from './Create.newcourse.menu'
 import Embedyoutubeplaylistemenu from './Embed.youtubeplaylist.menu'
+import Points from 'react-svg-line-chart/lib/components/Points';
 
 const styles = StyleSheet.create({
     burgerIcon: {
@@ -31,6 +32,12 @@ const styles = StyleSheet.create({
         position: 'absolute',
         left: 24,
         top: 34
+    },
+    customBurgerMenu1: {
+        color:'red',
+        zIndex:1,
+        cursor: 'pointer',
+        top:20
     },
     container: {
         backgroundColor: '#363740',
@@ -100,7 +107,7 @@ class SidebarComponent extends React.Component {
     toggleMenu = () => this.setState(prevState => ({ expanded: !prevState.expanded }));
 
     renderBurger = () => {
-        return <div onClick={this.toggleMenu} className={css(styles.burgerIcon)}>
+        return <div onClick={this.toggleMenu} className={css(styles.burgerIcon), css(styles.customBurgerMenu1)}>
             <IconBurger />
         </div>
     }
@@ -112,9 +119,9 @@ class SidebarComponent extends React.Component {
             <div style={{ position: 'relative' }}>
                 <Row className={css(styles.mainContainer)} breakpoints={{ 768: css(styles.mainContainerMobile, expanded && styles.mainContainerExpanded) }}>
                     {(isMobile && !expanded) && this.renderBurger()}
-                    <Col className={css(styles.container)} breakpoints={{ 768: css(styles.containerMobile, expanded ? styles.show : styles.hide) }}>
+                    <Column className={css(styles.container)} breakpoints={{ 768: css(styles.containerMobile, expanded ? styles.show : styles.hide) }}>
                         <LogoComponent />
-                        <Col className={css(styles.menuItemList)}>
+                        <Column className={css(styles.menuItemList)}>
                         <Viewcourse 
                             onClick={() => this.onItemClicked('item')} 
                             onClick={() => this.onItemClicked('Overview')}
@@ -131,9 +138,9 @@ class SidebarComponent extends React.Component {
                         onClick={() => this.onItemClicked('item')}
                         onClick={() => this.onItemClicked('Overview')}
                         />
-                        </Col>
+                        </Column>
                      
-                    </Col>
+                    </Column>
                     {isMobile && expanded && <div className={css(styles.outsideLayer)} onClick={this.toggleMenu}></div>}
                 </Row>
             </div>

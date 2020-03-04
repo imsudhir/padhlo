@@ -1,6 +1,6 @@
 import React, { Component } from 'react'; 
 import LoginModal from "react-login-modal-sm";
-
+import '../../App.css';
 import {
   BrowserRouter as Router,
   Switch,
@@ -101,10 +101,15 @@ import {
             <FontAwesomeIcon icon = {faSign}/>
              &nbsp; Learn
           </NavLink>
+          color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 21px;
           </ul> */}
           <ul>
     {/* {(localStorage.getItem('login_auth_token')!==null) ? */}
-          <NavLink key="002" to="/tutor" style={{display:"block"}} tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSignInAlt}/>
+          <NavLink className="btn-primary" key="002" to="/tutor"
+          style={{display:"block",color: "#fff",backgroundColor:"#007bff", borderRadius: "21px"}} tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSignInAlt}/>
           &nbsp;Teach here
           </NavLink> 
           {/* :''} */}

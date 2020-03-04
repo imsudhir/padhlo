@@ -8,6 +8,7 @@ import {
     Navbar,
     Row,
     Col,
+    Button, 
     NavbarToggler,
     NavbarBrand,
     Nav,
@@ -110,9 +111,9 @@ class TutorDashHeaderComponent extends Component{
         {this.state.logout ? (<Redirect push to="/home" />) :''}
             <Col lg="10" md="10"></Col>
             <Col lg="2" md="2">
-            <NavLink key="002" to="/home" onClick={this.Logout} style={{display:"block"}} tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSignOutAlt}/>
+            <Button  color="primary" key="002" to="/home" onClick={this.Logout} style={{display:"block"}} tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSignOutAlt}/>
             &nbsp;Logout
-            </NavLink> 
+            </Button> 
           </Col>
         </Row>
     );

@@ -221,6 +221,13 @@ app.post('/login', function (req, res) {
         return res.send(results);
     });
  });
+ app.get('/getyoutubecourse', function (req, res) {
+    dbCon.query('SELECT * FROM `courses_pl` WHERE `check_course` = 1', function (error, results, fields) {
+        if (error) throw error;
+        // return res.send({ error: false, result: results, message: 'users list.' });
+        return res.send(results);
+    });
+ });
 app.get('/', function (req, res) { 
 return res.send({
     error:true, 
@@ -397,7 +404,8 @@ app.post('/youtubecourse', (req, res) => {
         user_id:1,
         course_name: data.course_title,
         description:data.course_description,
-        demo_file:data.youtube_url
+        demo_file:data.youtube_url,
+        check_course:1
     }
     // console.log(course_youtube)
     if (!data.course_title || !data.course_description || !data.youtube_url) {

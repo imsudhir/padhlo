@@ -250,7 +250,7 @@ handleSubmit = (e) => {
          </React.Fragment>)
        : ''}
     <Form  onSubmit = {this.handleSubmit}>
-    <h1>Student</h1>
+    <h2>Signup Tutor</h2>
     {/* <container> */}
       <Row form >
       <Col lg="4"></Col>

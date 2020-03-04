@@ -22,7 +22,12 @@
   color: aliceblue;
 
 }
-
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 21px;
+}
 /* animate navbar */
 .sticky {
   position: sticky;
