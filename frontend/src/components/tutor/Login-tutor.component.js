@@ -1,6 +1,8 @@
 import classnames from 'classnames';
 import React, { Component } from 'react';
 import { Redirect, hashHistory} from 'react-router';
+import Tutordash from "../../route/Tutordash";
+
 // import { browserHistory } from 'react-router';
 
 
@@ -185,10 +187,9 @@ handleSubmit = (e) => {
        {this.state.isLoggedin ? (
         <React.Fragment>
         {/* {alert("Redireting..")} */}
-       {<Redirect push to="/tutdashboard" />} 
+       {<Redirect push to="/tutdashboard" component={Tutordash}/>} 
         {/* {window.top.location = window.top.location} */}
         {/* {this.props.history.push("/tutdashboard")} */}
-        {/* {hashHistory.push("/tutdashboard")} */}
            
          </React.Fragment>)
        : ''}

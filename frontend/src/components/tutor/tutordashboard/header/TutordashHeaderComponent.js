@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { string } from 'prop-types';
+import { Redirect } from 'react-router';
+
 // import { Row } from 'simple-flexbox';
 import {
     Collapse,
@@ -90,12 +92,22 @@ const styles = StyleSheet.create({
 });
 
 class TutorDashHeaderComponent extends Component{
+    constructor(){
+        super()
+        this.state={
+            logout:false
+        }
+    }
     Logout = () =>{
-        localStorage.clear()
+        localStorage.clear();
+        this.setState({
+            logout:true
+        })
     } 
     render(){ 
     return (
         <Row>
+        {this.state.logout ? (<Redirect push to="/home" />) :''}
             <Col lg="10" md="10"></Col>
             <Col lg="2" md="2">
             <NavLink key="002" to="/home" onClick={this.Logout} style={{display:"block"}} tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSignOutAlt}/>

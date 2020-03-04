@@ -25,52 +25,36 @@ import Tutordash from "./route/Tutordash";
 import Studentdash from "./route/Studentdash";
 import Info from "./components/Info";
 import Home from "./components/Home";
-function Courses(){
-  return <h1>this is courses page</h1>
-}
+
 function App() {
   return (
     <div className="App container-fluid" style={{}}>
       <Router>
         <switch>
-          
-      <Route path="/">
-      <Row className="mt-3 top" className="topheader" >
-      <TopHeader />
-      </Row>
-            <NavigationLink />
-      {/* <Home /> */}
-      </Route>
     {(localStorage.getItem('login_auth_token')==null) ?
       <React.Fragment>
-        {/* <Row className="mt-3 top" className="topheader" >
+        <Row className="mt-3 top" className="topheader" >
       <TopHeader />
-      </Row> */}
-      {/* <NavigationLink /> */}
+      </Row>
+      <NavigationLink />
       </React.Fragment>
       :
-      <Route exact strict path="/tutdashboard">
+      <Route strict path="/tutdashboard">
       <Tutordash/>
       </Route>    }
-      
       <Route path="/home">
       {/* <TopHeader /> */}
-      {/* <NavigationLink /> */}
+      <NavigationLink />
       <Home />
       </Route>
       <Route path="/student">
         <Studentloginsignup />
       </Route>
-      <Route exact strict path="/tutor">
+      <Route path="/tutor">
         <Tutorloginsignup />
       </Route>
       <Route path="/info">
-      {/* <NavigationLink /> */}
       <Info />
-      </Route>
-      <Route path="/courses">
-      {/* <NavigationLink /> */}
-      <Courses/>
       </Route>
       {/* <Route exat path="/Tutordash">
 <Tutordash />
