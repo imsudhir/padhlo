@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { UncontrolledCarousel, Col } from 'reactstrap';
-
+import { UncontrolledCarousel, Col, Jumbotron ,Button, Media } from 'reactstrap';
+import Slider from 'react-animated-slider';
+import 'react-animated-slider/build/horizontal.css';
+import 'normalize.css/normalize.css';
+import './slider-animations.css';
+import './styles11.css';
 const items = [
   {
     src: 'https://images.theconversation.com/files/268455/original/file-20190409-2931-rzhl22.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip',
@@ -25,8 +29,96 @@ const items = [
   }
 ];
 
-const Home = () => <UncontrolledCarousel items={items} />; 
+const Jambo = (props) => {
+  return (
+    <div>
+      <Jumbotron className="mt-5">
+        <h1 className="display-3">Get personal learning recommendations </h1>
+        <p className="lead">Answer a few questions for your top picks</p>
+        <hr className="my-2" />
+         <p className="lead">
+          <Button color="primary">Learn now</Button>
+        </p>
+      </Jumbotron>
+    </div>
+  );
+};
+//..........................
 
+const content = [
+	{
+		title: 'Vulputate Mollis Ultricies Fermentum Parturient',
+		description:
+		'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis.',
+		button: 'Read More',
+		image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80',
+		user: 'Luan Gjokaj',
+		userProfile: 'https://i.imgur.com/JSW6mEk.png'
+	},
+	{
+		title: 'Tortor Dapibus Commodo Aenean Quam',
+		description:
+		'Nullam id dolor id nibh ultricies vehicula ut id elit. Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec sed odio dui.',
+		button: 'Discover',
+		image: 'https://i.imgur.com/DCdBXcq.jpg',
+		user: 'Erich Behrens',
+		userProfile: 'https://i.imgur.com/0Clfnu7.png'
+	},
+	{
+		title: 'Phasellus volutpat metus',
+		description:
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.',
+		button: 'Learn Now',
+		image: 'https://i.imgur.com/DvmN8Hx.jpg',
+		user: 'Bruno Vizovskyy',
+		userProfile: 'https://i.imgur.com/4KeKvtH.png'
+	}
+];
+
+const Home = () => (
+ 
+	 <React.Fragment>
+		{/* <div className="wrapper">
+			<h1>react-animated-slider</h1>
+		
+		</div> */}
+		<Slider className="slider-wrapper containerFluid">
+			{content.map((item, index) => (
+				<div
+					key={index}
+					className="slider-content"
+					style={{ background: `url('${item.image}') no-repeat center center` }}
+				>
+					<div className="inner">
+						<h1>{item.title}</h1>
+						<p>{item.description}</p>
+						<button>{item.button}</button>
+					</div>
+					<section>
+						<img src={item.userProfile} alt={item.user} />
+						<span>
+							Posted by <strong>{item.user}</strong>
+						</span>
+					</section>
+				</div>
+			))}
+		</Slider>
+ </React.Fragment>
+);
+
+//...........................
+
+const Home11 = () => {
+return (
+  <React.Fragment>
+<UncontrolledCarousel items={items} />
+  <Jambo />
+
+  </React.Fragment>
+
+
+); 
+}
 class Home1 extends Component {
     constructor(props) {
         super(props);
@@ -36,7 +128,7 @@ class Home1 extends Component {
     render() { 
         return ( 
             <React.Fragment>
-                <h1>Home Page</h1>
+                <h1>Home1 Page</h1>
                 <p>
                 Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of 
                 classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin 

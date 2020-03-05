@@ -6,6 +6,8 @@ import React, { Component } from 'react';
   DropdownMenu, 
   Collapse,
   DropdownItem, Table, Button, ButtonGroup, Card, CardBody, Row, Col} from 'reactstrap';
+  import ScrollAnimation from 'react-animate-on-scroll';
+
 class Courses extends Component {
     constructor(){
         super()
@@ -36,13 +38,15 @@ class Courses extends Component {
       const { isLoading, Course, error } = this.state;
       return (
      <React.Fragment>
-         
+
         {error ? <p>{error.message}</p> : null}
        {!isLoading ? (
          Course.map(courses => {
             const { course_id, demo_file} = courses;
            return (
             <Col className="mt-5">
+              <ScrollAnimation animateIn="zoomIn">
+
           <Card className="jd_element_">
             <CardBody style={{boxShadow: "#8e8181 4px 3px 14px 0px"}}>
             <iframe 
@@ -51,13 +55,14 @@ class Courses extends Component {
             </iframe>
             </CardBody>
             </Card>
+            </ScrollAnimation>
              </Col>
            );
          })
        ) : (
          <h3>Loading...</h3>
        )}
-     </React.Fragment>
+      </React.Fragment>
    );
  }
 }
