@@ -224,32 +224,35 @@ handleSubmit = (e) => {
     <h2>Tutor</h2> 
     {/* <container> */}
       <Row form>
-      <Col lg="4"></Col>
-        <Col lg="4">
+      <Col sm="2" lg="4"></Col>
+        <Col sm="8" md="8" lg="4">
           <FormGroup>
              <Input type="email" name="email" onChange={this.handleEmail} id="stdloginEmail" required={true} value={this.state.user.email} placeholder="Email" />
             <span id="emailerror" style={{color:"red", display:"none"}}>Enter correct Email</span>
           </FormGroup>
         </Col>
+      <Col sm="2" md="2" lg="4"></Col>
+
       </Row>
      <Row form>
-      <Col lg="4"></Col>
-      <Col lg="4">
+      <Col sm="2" md="2" lg="4"></Col>
+      <Col sm="8" md="8" lg="4">
       <FormGroup>
          <Input type="password" name="stdloginpass" onChange={this.handlePassword} id="stdloginpass" autoComplete="off" required={true} value={this.state.user.password} placeholder="Password"/>
         <span id="passworderror" style={{color:"red", display:"none"}}>Password must have at least one digit (length 5-20)</span>
       </FormGroup>
       </Col>
-      <Col lg="4"></Col>
+      <Col sm="2" md="2" lg="4"></Col>
+
      </Row>
      <Row >
-      <Col lg="4"></Col>
-      <Col lg="4">
+      <Col sm="2" md="2" lg="4"></Col>
+      <Col sm="8" md="8" lg="4">
       {/* <FormGroup> */}
      <Button color="primary" size="md" block>Login</Button>
       {/* </FormGroup> */}
       </Col>
-      <Col lg="4"></Col>
+      <Col sm="2" md="2" lg="4"></Col>
      </Row>
     {/* </container> */}
     </Form>

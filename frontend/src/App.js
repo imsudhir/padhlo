@@ -90,7 +90,7 @@ function App() {
     </Route>: 
         <Redirect push to="/home" />  
     } */}
-      <Row className="footer pt-5 mt-5">
+      <Row className="footer pt-5 mtc">
         <Footer />
       </Row>
       </switch>

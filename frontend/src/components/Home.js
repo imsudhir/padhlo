@@ -47,18 +47,18 @@ const Jambo = (props) => {
 
 const content = [
 	{
-		title: 'Vulputate Mollis Ultricies Fermentum Parturient',
+		title: 'Education Is The Best Way To Reform people',
 		description:
-		'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis.',
-		button: 'Read More',
+		'We teach, model, and encourage a love of learning, collaboration, and compassion.',
+		// button: 'Read More',
 		image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80',
 		user: 'Luan Gjokaj',
 		userProfile: 'https://i.imgur.com/JSW6mEk.png'
 	},
 	{
-		title: 'Tortor Dapibus Commodo Aenean Quam',
+		title: "Education Shapes's peoples Life",
 		description:
-		'Nullam id dolor id nibh ultricies vehicula ut id elit. Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec sed odio dui.',
+		'Learn for life..',
 		button: 'Discover',
 		image: 'https://i.imgur.com/DCdBXcq.jpg',
 		user: 'Erich Behrens',
@@ -67,7 +67,7 @@ const content = [
 	{
 		title: 'Phasellus volutpat metus',
 		description:
-		'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.',
+		'Learn to do their best work with other, and be safe  fair and kind',
 		button: 'Learn Now',
 		image: 'https://i.imgur.com/DvmN8Hx.jpg',
 		user: 'Bruno Vizovskyy',

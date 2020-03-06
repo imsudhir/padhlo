@@ -4,6 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var mysql = require('mysql');
+var md5 = require('md5');
 const multer = require('multer')
 const mkdirp = require('mkdirp')
 const upload = multer({dest:'./uploads'})
@@ -112,7 +113,7 @@ app.post('/signup/tutor', (req, res) => {
               name: req.body.name,
               email: req.body.email,
               contact:req.body.contact,
-              password:req.body.password,
+              password:md5(req.body.password),
               role_id:"20"
            };
     // console.log(data.email);
@@ -160,12 +161,14 @@ app.post('/login', function (req, res) {
     const data = req.body;
     const token = jwt.sign({data}, 'jwt_secret_key')
     console.log(data)
+    console.log(md5(data.password));
+
     if (!data.email || !data.password) { 
         console.log("errrrrr....")
         return res.status(400).send({ error: user, message: 'Account does not exist'});
     } else {
     const login = "SELECT `email` , `role_id` FROM `user_pl` WHERE `email` = ? && `password` = ?"
-    const query = dbCon.query(login, [data.email, data.password],(err, results) => {
+    const query = dbCon.query(login, [data.email, md5(data.password)],(err, results) => {
       if(err) throw err;
       console.log(results)
       if(results.length){

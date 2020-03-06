@@ -49,7 +49,7 @@ class Courses extends Component {
 
           <Card className="jd_element_">
             <CardBody style={{boxShadow: "#8e8181 4px 3px 14px 0px"}}>
-            <iframe 
+            <iframe
             src= {demo_file}
             frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
             </iframe>

@@ -61,7 +61,9 @@
   color: white;
   text-align: center;
 }
-
+.mtc {
+  margin-top: 7rem !important;
+}
 body {
   margin: 0;
 }

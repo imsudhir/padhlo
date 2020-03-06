@@ -6,6 +6,8 @@ import {container, TabContent, TabPane, Nav, NavItem,
    Table, Form, ButtonGroup, FormGroup, Label, 
    Input, FormText} from 'reactstrap';
 import Tutorlogin from "./Login-tutor.component";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content'
 
 let patterns = {
   name:/^[a-z\d ]{4,20}$/i,
@@ -217,8 +219,7 @@ handleSubmit = (e) => {
         }).then((result) => {result.json().then((res)=>{
           console.log(res.recurring_email);
           if(!res.recurring_email){
-          alert("A new student created Successfully")
-          this.setState({
+           this.setState({
             ...this.state,
                user:{
                  ...this.state.user,  
@@ -233,6 +234,30 @@ handleSubmit = (e) => {
           document.getElementById("emailerrorr").innerHTML = "This email allready exist..";
           }
         }) 
+        //....
+        const Swal = require('sweetalert2')
+        const MySwal = withReactContent(Swal)
+      
+        MySwal.fire({
+          title: <p>Hello World</p>,
+          footer: 'Copyright 2018',
+          onOpen: () => {
+            // `MySwal` is a subclass of `Swal`
+            //   with all the same instance & static methods
+            MySwal.clickConfirm()
+          }
+        }).then(() => {
+          return (
+            MySwal.fire(
+              'You Signed up Successfully',
+              'Welcome to Padhlo !',
+              'success'
+            )).then(()=>{
+              return(window.location.reload(false))
+            })
+      
+        })
+        //....
     })
     console.log(this.state.user);
     
@@ -245,7 +270,6 @@ handleSubmit = (e) => {
     <React.Fragment>
       {this.state.isRedirect ? (
         <React.Fragment>
-        {alert("Redireting..")}
         <Redirect push to="/home" />  
          </React.Fragment>)
        : ''}
@@ -253,8 +277,8 @@ handleSubmit = (e) => {
     <h2>Signup Tutor</h2>
     {/* <container> */}
       <Row form >
-      <Col lg="4"></Col>
-        <Col lg="4">
+      <Col sm="2"  md="2" lg="4"></Col>
+        <Col sm="8" md="8" lg="4">
         <FormGroup>
             {/* <Label for="restaurantName">Name</Label> */}
             <Input type="text" name="name" onChange={this.handleName} id="name" required={true} value={this.state.user.name} placeholder="Name" />
@@ -263,8 +287,8 @@ handleSubmit = (e) => {
           </Col>
     </Row>
       <Row form>
-      <Col lg="4"></Col>
-        <Col lg="4">
+      <Col sm="2" md="2" lg="4"></Col>
+        <Col sm="8" md="8" lg="4">
         <FormGroup>
             {/* <Label for="restaurantEmail">Email</Label> */}
             <Input type="email" name="email"
@@ -272,37 +296,41 @@ handleSubmit = (e) => {
             <span id="emailerrorr" style={{color:"red", display:"none"}}>Enter correct Email</span>
           </FormGroup>
         </Col>
+      <Col sm="2" md="2" lg="4"></Col>
+
       </Row>
       <Row form>
-      <Col lg="4"></Col>
-      <Col lg="4">
+      <Col sm="2" md="2" lg="4"></Col>
+      <Col sm="8" md="8" lg="4">
       <FormGroup>
         {/* <Label for="restaurantContact">Contact</Label> */}
         <Input type="text" name="contact" min="1" max="5" onChange={this.handleContact} id="signupcontact" required={true} value={this.state.user.contact} placeholder="Contact"/>
         <span id="contacterror" style={{color:"red", display:"none"}}>Enter correct contact</span>
       </FormGroup>
       </Col>
+      <Col sm="2" md="2" lg="4"></Col>
+
      </Row>
      <Row form>
-      <Col lg="4"></Col>
-      <Col lg="4">
+      <Col sm="2" md="2" lg="4"></Col>
+      <Col sm="8" md="8" lg="4">
       <FormGroup>
         {/* <Label for="restaurantAddress">Address</Label> */}
         <Input type="password" name="address" onChange={this.handlePassword} autoComplete="off" id="signpassword" required={true} value={this.state.user.password} placeholder="Password"/>
         <span id="stdpassworderror" style={{color:"red", display:"none"}}>Password must have at least one digit (length 5-20)</span>
       </FormGroup>
       </Col>
-      <Col lg="4"></Col>
+      <Col sm="2" md="2" lg="4"></Col>
      </Row>
      <Row>
-      <Col lg="4"></Col>
-      <Col lg="4">
+      <Col sm="2" lg="4"></Col>
+      <Col sm="8" md="12" lg="4">
       {/* <FormGroup> */}
      <Button color="primary" size="md" block>Sign up</Button>
       {/* </FormGroup> */}
       </Col>
-      <Col lg="4"></Col>
-     </Row>
+      <Col sm="2" lg="4"></Col>
+    </Row>
 
     {/* </container> */}
     </Form>
@@ -322,23 +350,24 @@ const Tutorloginsignup = (props) => {
 
   return (
     <React.Fragment>
-
-        <Row className="mt-3">
-            <Col lg="4">
+      <div style={{padding:"50px", backgroundImage: "url('/loginbackground.jpg')"}}>
+ 
+        <Row className="mt-3" >
+            <Col  sm="2" md="4">
               </Col>
-              <Col md={{ size: 4, order: 1, offset: 4 }}>
+              <Col  md="4" sm="8" >
                 <ButtonGroup size="sm"> 
-                <Button>
+                <Button color="primary">
                    <NavLink 
-                    className={classnames({ active: activeTab === '1' })}
+                    // className={classnames({ active: activeTab === '1' })}
                     onClick={() => { toggle('1'); }}
                   >
                     Login
                   </NavLink>
                   </Button>
-                <Button>
+                <Button color="primary">
                   <NavLink
-                    className={classnames({ active: activeTab === '2' })}
+                    // className={classnames({ active: activeTab === '2' })}
                     onClick={() => { toggle('2'); }}
                   >
                 Signup
@@ -364,27 +393,29 @@ const Tutorloginsignup = (props) => {
                 </NavLink>
                 </NavItem>
                </Nav> */}
-               <Col lg="4">
+               <Col   sm="2" md="4">
               </Col>
             
         </Row>
-       <TabContent activeTab={activeTab}>
+       <TabContent activeTab={activeTab} >
         <TabPane tabId="1">
           <Row>
-            <Col sm="12">
+            <Col>
             <Tutorlogin />
             </Col>
           </Row>
         </TabPane>
         <TabPane tabId="2">
           <Row>
-            <Col sm="12">
+            <Col>
                 <Createstudent />
             </Col>
           </Row>
         </TabPane>
       </TabContent>
+      </div>
     </React.Fragment>
+    
   );
 }
 
