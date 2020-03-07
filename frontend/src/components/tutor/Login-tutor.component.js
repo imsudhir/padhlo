@@ -28,7 +28,7 @@ class Tutorlogin extends Component {
         user:{
             email:'',
             password:'',
-            name:'sudhir'
+            name:''
         },
         validation:{
             emailValid:false,
@@ -69,10 +69,10 @@ login_auth(){
     "password":this.state.user.password
    })
     .then(response => {
-      console.log(response.data.user_exist)
-      console.log(response)
-      console.log(response.data.response[0].role_id)
-      console.log(response.data.token && response.data.user_exist)
+      // console.log(response.data.user_exist)
+      // console.log(response)
+      // console.log(response.data.response[0].role_id)
+      // console.log(response.data.token && response.data.user_exist)
       if(response.data.token && response.data.user_exist){
         localStorage.setItem('login_auth_token', response.data.token);
         this.setState({
@@ -104,14 +104,25 @@ login_auth(){
 
   })
   //...................
-  
     // window.location.reload(false)
-      } 
+      } else {
+        this.setState({
+          ...this.state,
+          user:{
+            email:'',
+            password:'',
+            name:''
+           },
+          isLoggedin:false, 
+         })
+       
+       document.getElementById("loginerror").style.display="block";
+      }
 
       console.log(this.state)
 
     })
-    .catch(error => this.setState({ error, isLoading: false }));
+    .catch(error => this.setState({ error, isLoggedin: false }));
 }
 
 handleEmail = (e) => {
@@ -158,6 +169,7 @@ if(patterns.email.test(e.target.value)){
 
 handlePassword = (e) => {
   console.log(e.target.value);
+ document.getElementById("loginerror").style.display="none";
   this.setState({
    ...this.state,
       user:{
@@ -170,6 +182,8 @@ handlePassword = (e) => {
    })
 if(patterns.password.test(e.target.value)){
  document.getElementById("passworderror").style.display="none";
+ document.getElementById("loginerror").style.display="none";
+
  this.setState({
    ...this.state,
       user:{
@@ -214,7 +228,7 @@ handleSubmit = (e) => {
        {this.state.isLoggedin ? (
         <React.Fragment>
         {/* {alert("Redireting..")} */}
-       {<Redirect push to="/tutdashboard" component={Tutordash}/>} 
+       {<Redirect push to="/tutdashboard/upload" component={Tutordash}/>} 
         {/* {window.top.location = window.top.location} */}
         {/* {this.props.history.push("/tutdashboard")} */}
            
@@ -223,7 +237,7 @@ handleSubmit = (e) => {
     <Form  onSubmit = {this.handleSubmit}>
     <h2>Tutor</h2> 
     {/* <container> */}
-      <Row form>
+      <Row form> 
       <Col sm="2" lg="4"></Col>
         <Col sm="8" md="8" lg="4">
           <FormGroup>
@@ -239,7 +253,8 @@ handleSubmit = (e) => {
       <Col sm="8" md="8" lg="4">
       <FormGroup>
          <Input type="password" name="stdloginpass" onChange={this.handlePassword} id="stdloginpass" autoComplete="off" required={true} value={this.state.user.password} placeholder="Password"/>
-        <span id="passworderror" style={{color:"red", display:"none"}}>Password must have at least one digit (length 5-20)</span>
+         <span id="passworderror" style={{color:"red", display:"none"}}>Password must have at least one digit (length 5-20)</span>
+        <span id="loginerror" style={{color:"red", display:"none"}}>Incorrect login details !! try again.. </span>
       </FormGroup>
       </Col>
       <Col sm="2" md="2" lg="4"></Col>

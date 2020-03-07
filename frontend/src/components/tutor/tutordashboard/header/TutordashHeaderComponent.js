@@ -109,11 +109,12 @@ class TutorDashHeaderComponent extends Component{
     return (
         <Row>
         {this.state.logout ? (<Redirect push to="/home" />) :''}
-            <Col lg="10" md="10"></Col>
-            <Col lg="2" md="2">
-            <Button  color="primary" key="002" to="/home" onClick={this.Logout} style={{display:"block"}} tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSignOutAlt}/>
-            &nbsp;Logout
-            </Button> 
+            <Col lg="10" sm="10" md="10"></Col>
+            <Col lg="2" sm="2" md="2">
+            <Button  style={{padding:"2px"}} color="primary" key="002" to="/home" onClick={this.Logout} style={{display:"block"}} tag={Link} className="mr-auto"> <FontAwesomeIcon icon = {faSignOutAlt}/>
+              Logout 
+            
+             </Button> 
           </Col>
         </Row>
     );

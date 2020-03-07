@@ -44,7 +44,6 @@ const Jambo = (props) => {
   );
 };
 //..........................
-
 const content = [
 	{
 		title: 'Education Is The Best Way To Reform people',
@@ -94,12 +93,12 @@ const Home = () => (
 						<p>{item.description}</p>
 						<button>{item.button}</button>
 					</div>
-					<section>
+					{/* <section>
 						<img src={item.userProfile} alt={item.user} />
 						<span>
 							Posted by <strong>{item.user}</strong>
 						</span>
-					</section>
+					</section> */}
 				</div>
 			))}
 		</Slider>

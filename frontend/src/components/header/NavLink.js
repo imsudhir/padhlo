@@ -57,10 +57,8 @@ import {
   ];
   const Creatitemenunav = (props) =>{
   const navitems = props.navitems;
-  console.log(navitems);
   const Createnavitem = navitems.map((item) => 
   <NavItem key={item.id}>
-  
   <NavLink  style={{}} tag={Link} to={item.to}> <FontAwesomeIcon icon = {item.icon} />{item.text}</NavLink>
   </NavItem>
    ); 

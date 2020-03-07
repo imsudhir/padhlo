@@ -45,10 +45,10 @@ class Createstudent extends Component {
                ...this.state.validation
              }
         }) 
-        console.log(this.state.user.name);
+        // console.log(this.state.user.name);
 
-      console.log(this.state.user.name)
-      console.log(this.state.validation.nameValid)
+      // console.log(this.state.user.name)
+      // console.log(this.state.validation.nameValid)
     if(patterns.name.test(e.target.value)){
       document.getElementById("nameerror").style.display="none";
       this.setState({
@@ -74,7 +74,7 @@ class Createstudent extends Component {
                nameValid:false
              }
         }) 
-      console.log("plz enter correct name")
+      // console.log("plz enter correct name")
       document.getElementById("nameerror").style.display="block";
     }
 }
@@ -106,7 +106,7 @@ if(patterns.email.test(e.target.value)){
     })
 } else{
   document.getElementById("emailerrorr").style.display="block";
-  console.log("plz enter correct email")
+  // console.log("plz enter correct email")
   this.setState({
     ...this.state,
        user:{
@@ -121,7 +121,7 @@ if(patterns.email.test(e.target.value)){
 }
 }
 handleContact = (e) => {
-   console.log(e.target.value);
+  //  console.log(e.target.value);
    this.setState({
     ...this.state,
        user:{
@@ -146,7 +146,7 @@ if(patterns.contact.test(e.target.value)){
          }
     })
 } else{
-  console.log("plz enter correct contact");
+  // console.log("plz enter correct contact");
   this.setState({
     ...this.state,
        user:{
@@ -163,7 +163,7 @@ if(patterns.contact.test(e.target.value)){
 }
 
 handlePassword = (e) => {
-   console.log(e.target.value);
+  //  console.log(e.target.value);
    this.setState({
     ...this.state,
        user:{
@@ -188,7 +188,7 @@ if(patterns.password.test(e.target.value)){
          }
     })
 } else{
-  console.log("plz enter valid password")
+  // console.log("plz enter valid password")
   this.setState({
     ...this.state,
        user:{
@@ -204,7 +204,7 @@ if(patterns.password.test(e.target.value)){
 }
 }
 handleSubmit = (e) => {
-      console.log(this.state.user);
+      // console.log(this.state.user);
         e.preventDefault();
         if(this.state.validation.nameValid && this.state.validation.emailValid && this.state.validation.contactValid && this.state.validation.passwordValid){
         fetch("http://localhost:3002/signup/student",
@@ -215,7 +215,7 @@ handleSubmit = (e) => {
             },
             body : JSON.stringify(this.state.user)
         }).then((result) => {result.json().then((res)=>{
-          console.log(res.recurring_email);
+          // console.log(res.recurring_email);
           if(!res.recurring_email){
           alert("A new student created Successfully")
           this.setState({
@@ -234,10 +234,10 @@ handleSubmit = (e) => {
           }
         }) 
     })
-    console.log(this.state.user);
+    // console.log(this.state.user);
     
   }else{
-      alert("Please Enter All required entry");
+      // alert("Please Enter All required entry");
     }
   }
    render() {

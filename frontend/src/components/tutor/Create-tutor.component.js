@@ -229,34 +229,35 @@ handleSubmit = (e) => {
                  },
             isRedirect:true
             })
+            const Swal = require('sweetalert2')
+            const MySwal = withReactContent(Swal)
+          
+            MySwal.fire({
+              title: <p>Hello World</p>,
+              footer: 'Copyright 2018',
+              onOpen: () => {
+                // `MySwal` is a subclass of `Swal`
+                //   with all the same instance & static methods
+                MySwal.clickConfirm()
+              }
+            }).then(() => {
+              return (
+                MySwal.fire(
+                  'You Signed up Successfully',
+                  'Welcome to Padhlo !',
+                  'success'
+                )).then(()=>{
+                  return(window.location.reload(false))
+                })
+          
+            })
           } else{
           document.getElementById("emailerrorr").style.display="block";
           document.getElementById("emailerrorr").innerHTML = "This email allready exist..";
           }
         }) 
         //....
-        const Swal = require('sweetalert2')
-        const MySwal = withReactContent(Swal)
-      
-        MySwal.fire({
-          title: <p>Hello World</p>,
-          footer: 'Copyright 2018',
-          onOpen: () => {
-            // `MySwal` is a subclass of `Swal`
-            //   with all the same instance & static methods
-            MySwal.clickConfirm()
-          }
-        }).then(() => {
-          return (
-            MySwal.fire(
-              'You Signed up Successfully',
-              'Welcome to Padhlo !',
-              'success'
-            )).then(()=>{
-              return(window.location.reload(false))
-            })
-      
-        })
+
         //....
     })
     console.log(this.state.user);
@@ -324,12 +325,12 @@ handleSubmit = (e) => {
      </Row>
      <Row>
       <Col sm="2" lg="4"></Col>
-      <Col sm="8" md="12" lg="4">
+      <Col sm="8" md="8" lg="4">
       {/* <FormGroup> */}
      <Button color="primary" size="md" block>Sign up</Button>
       {/* </FormGroup> */}
       </Col>
-      <Col sm="2" lg="4"></Col>
+      <Col sm="2" md="2" lg="4"></Col>
     </Row>
 
     {/* </container> */}

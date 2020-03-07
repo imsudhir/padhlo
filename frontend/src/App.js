@@ -34,11 +34,14 @@ function App() {
         <switch>
           
       <Route exact path="/">
-      <Row className="mt-3 top" className="topheader" >
-           <TopHeader />
-      </Row>
-            <NavigationLink />
-            <Home />
+          <Row className="mt-3 top" className="topheader" >
+              <TopHeader />
+          </Row>
+                <NavigationLink />
+                <Home />
+                <Row className="footer pt-5 mtc">
+            <Footer />
+          </Row>
       </Route>
       {(localStorage.getItem('login_auth_token')!==null) ?
       <Route path="/tutdashboard">
@@ -51,6 +54,9 @@ function App() {
         </Row>
         <NavigationLink />
         <Home />
+        <Row className="footer pt-5 mtc">
+        <Footer />
+      </Row>
       </Route>
       <Route path="/student">
         <Studentloginsignup />
@@ -61,6 +67,9 @@ function App() {
         </Row>
         <NavigationLink />
         <Tutorloginsignup />
+        <Row className="footer pt-5 mtc">
+        <Footer />
+      </Row>
       </Route>
       <Route path="/info">
           <Row className="mt-3 top" className="topheader" >
@@ -68,6 +77,9 @@ function App() {
           </Row>
           <NavigationLink />
           <Info />
+          <Row className="footer pt-5 mtc">
+        <Footer />
+      </Row>
       </Route>
       <Route path="/courses">
             <Row className="mt-3 top" className="topheader" >
@@ -76,6 +88,9 @@ function App() {
             <NavigationLink />
       <Row>
       <Courses/>
+      </Row>
+      <Row className="footer pt-5 mtc">
+        <Footer />
       </Row>
       </Route>
       {/* <Route exact path="/Tutordash">
@@ -90,9 +105,9 @@ function App() {
     </Route>: 
         <Redirect push to="/home" />  
     } */}
-      <Row className="footer pt-5 mtc">
+      {/* <Row className="footer pt-5 mtc">
         <Footer />
-      </Row>
+      </Row> */}
       </switch>
       </Router> 
     </div>

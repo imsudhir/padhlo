@@ -177,7 +177,7 @@ app.post('/login', function (req, res) {
           "status": 200,
           "error": null,
           "message":true,
-          "user_exist":true, 
+          "user_exist":true,
           "response": results,
           "token":token
          }));
