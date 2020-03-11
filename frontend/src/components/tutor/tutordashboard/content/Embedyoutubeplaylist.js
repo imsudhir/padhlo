@@ -273,7 +273,7 @@ handleYoutube_url = (e) => {
 
 
 handleCreateCourse = (e)=>{
-alert(JSON.stringify(this.state.course));
+// alert(JSON.stringify(this.state.course));
 e.preventDefault();
 // console.log(this.state)
 console.log(this.state.course)
@@ -286,7 +286,7 @@ if(this.state.validation.course_titleValid && this.state.validation.course_descr
   console.log(res)
   if(res.status===200){ 
   toast.success('Created Successfully')
-  // this.reset();
+   this.reset();
   }
 })
 .catch(err => { 
@@ -303,13 +303,13 @@ course:{
       cat_id:'',              
       course_title:'',
       course_description:'',
-      selectedFile: null 
+      youtube_url:null 
       // demo_file:''
   },
   validation:{
       course_titleValid:false,
       course_descriptionValid:false,
-      demo_fileValid:false
+      youtube_urlValid:false
 },
 isRedirect:false
   })
@@ -320,7 +320,9 @@ render() {
  <React.Fragment>
   {/* {console.log(category)} */}
   <Form  onSubmit = {this.handleCreateCourse}>
-  <h1>Embed Youtube Playlist</h1>
+  <h4 style={{boxShadow : "-1px 1px 5px rgba(0, 0, 0, 0.9)", padding:"8px", background:"#007bff", color:"#f7f8fc"}}>
+    Embed Youtube Playlist
+  </h4>
     <FormGroup>
       <Input type="select" onChange={this.handleCategory}>
       <option>Select category</option>

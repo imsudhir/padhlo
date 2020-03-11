@@ -8,6 +8,7 @@ import {
     Nav,
     NavItem,
     NavLink,
+    UncontrolledTooltip,
     Button, Form, FormGroup, Label, Input, FormText, Spinner
   } from 'reactstrap'; 
   import {
@@ -17,7 +18,7 @@ import {
     Link
   } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faNewspaper,faBell,faSpinner,faUpload } from '@fortawesome/free-solid-svg-icons'
+import { faNewspaper,faBell,faSpinner,faUpload, faCreditCard, faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 import { StyleSheet, css } from 'aphrodite';
   const styles = StyleSheet.create({
     activeBar: {
@@ -58,11 +59,14 @@ import { StyleSheet, css } from 'aphrodite';
     return (
         <Row className={css(styles.container, active && styles.activeContainer)} vertical="center" {...otherProps}>
              <Nav>
-               <NavItem>
-                 <NavLink to="/tutdashboard/new" tag={Link}>
-                   <FontAwesomeIcon icon={faUpload} /> <span>Create Course</span>
+               <NavItem id="createnewcourse">
+                 <NavLink disabled to="/tutdashboard/new" tag={Link}>
+                   <FontAwesomeIcon icon={faCreditCard} /> <span>Create Course</span>
                    </NavLink>
                  </NavItem>
+                 <UncontrolledTooltip placement="right" target="createnewcourse">
+              This is disabled for now
+            </UncontrolledTooltip>
               </Nav>
          </Row>)
       }

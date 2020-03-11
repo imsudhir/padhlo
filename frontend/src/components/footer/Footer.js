@@ -1,7 +1,7 @@
 import React from 'react';
 import {container, Table, Card, Row, Col, NavbarBrand} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee,faHome,faList,faPlus,faSign,faEdit,faSearch, faSignInAlt, faBookReader} from '@fortawesome/free-solid-svg-icons'
+import { faCoffee,faHome,faList,faPlus,faSign,faEdit,faSearch, faSignInAlt, faBookReader, faPhone, faPhoneAlt, faAddressCard, faMap, faMapSigns, faSearchLocation, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
 import {
   BrowserRouter as Router,
   Switch ,
@@ -34,7 +34,7 @@ function Footer() {
         </ul>
         </Col>
           <Col>
-          <FontAwesomeIcon icon = {faPlus} /> <b>Call Now
+          <FontAwesomeIcon icon = {faPhoneAlt} /> <b>Call Now
           </b>
           <p>91 7065370655</p>
           </Col>
@@ -43,7 +43,8 @@ function Footer() {
           <p>info@padhlo.com</p>
           </Col>
           <Col>
-            <b>Our Location</b>
+          <FontAwesomeIcon icon = {faMapMarkerAlt} />
+            <b> Our Location</b>
             <p>Rz-123 Manas Kunj Road Uttam Nager, Delhi</p>
           </Col>
     </React.Fragment>

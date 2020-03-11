@@ -8,6 +8,7 @@ import {
     Nav,
     NavItem,
     NavLink,
+    UncontrolledTooltip,
     Button, Form, FormGroup, Label, Input, FormText, Spinner
   } from 'reactstrap'; 
   import {
@@ -58,12 +59,16 @@ import { StyleSheet, css } from 'aphrodite';
     return (
         <Row className={css(styles.container, active && styles.activeContainer)} vertical="center" {...otherProps}>
              <Nav>
-               <NavItem>
-                 <NavLink to="/tutdashboard/upload" tag={Link}>
+               <NavItem  id="fileupload" >
+                 <NavLink to="/tutdashboard/upload" disabled tag={Link}>
                    <FontAwesomeIcon icon={faUpload} /> <span>Course upload</span>
                    </NavLink>
                    </NavItem>
+                   
               </Nav>
+            <UncontrolledTooltip placement="right" target="fileupload">
+              This is disabled for now
+            </UncontrolledTooltip>
          </Row>)
 }
 

@@ -17,7 +17,7 @@ import {
     Link
   } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faNewspaper,faBell,faSpinner,faUpload } from '@fortawesome/free-solid-svg-icons'
+import { faNewspaper,faBell,faSpinner,faUpload, faHotTub, faYinYang, faYenSign, faVoteYea } from '@fortawesome/free-solid-svg-icons'
 import { StyleSheet, css } from 'aphrodite';
   const styles = StyleSheet.create({
     activeBar: {
@@ -60,7 +60,7 @@ import { StyleSheet, css } from 'aphrodite';
              <Nav>
                <NavItem>
                  <NavLink to="/tutdashboard/embed" tag={Link}>
-                   <FontAwesomeIcon icon={faUpload} /> <span>Embed Playlist</span>
+                   <FontAwesomeIcon icon={faVoteYea} /> <span>Embed Playlist</span>
                    </NavLink>
                  </NavItem>
               </Nav>

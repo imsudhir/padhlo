@@ -325,7 +325,7 @@ if(this.state.validation.course_titleValid && this.state.validation.course_descr
   data.append('file', this.state.course.selectedFile)
   console.log(JSON.stringify(data)) 
   // console.log(this.state.selectedFile)
-  axios.post("http://localhost:3002/upload", data, {
+  axios.post("http://localhost:3002/createnewcourse", data, {
       // receive two parameter endpoint url ,form data
       // console.log(data3)
   })
@@ -391,7 +391,9 @@ render() {
  <React.Fragment>
   {/* {console.log(category)} */}
   <Form  onSubmit = {this.handleCreateCourse}>
-  <h1>Create New Course</h1>
+  <h4 style={{boxShadow : "-1px 1px 5px rgba(0, 0, 0, 0.9)", padding:"8px", background:"#007bff", color:"#f7f8fc"}}>
+
+    Create New Course</h4>
     <FormGroup>
       <Input type="select" onChange={this.handleCategory}>
       <option>Select category</option>
@@ -427,7 +429,7 @@ render() {
             <span id="course_description_error" style={{color:"red", display:"none"}}>Enter correct Name(Don't use special chars minimum 20 to 200 chars)</span>
         </FormGroup>
         <FormGroup>
-        <input type="file" name="file" onChange={this.handleDemo_file}/>
+        {/* <input type="file" name="file" onChange={this.handleDemo_file}/> */}
         <div class="form-group">
    <ToastContainer />
 </div>

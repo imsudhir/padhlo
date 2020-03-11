@@ -23,7 +23,7 @@ import {
     DropdownItem
   } from 'reactstrap';
   import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-  import { faCoffee,faHome,faList,faPlus,faEdit,faSearch, faSign, faLiraSign, faDollarSign, faSignInAlt} from '@fortawesome/free-solid-svg-icons'
+  import { faCoffee,faHome,faList,faPlus,faEdit,faSearch, faSign, faLiraSign, faDollarSign, faSignInAlt, faBookReader, faInfo, faInbox, faInfoCircle} from '@fortawesome/free-solid-svg-icons'
   import Createtutor from "../tutor/Create-tutor.component";
   import Createstudent from "../student/Create-student.component";
 
@@ -51,8 +51,8 @@ import {
   };
   const navitemlist = [
     {id: '1', to:'home', text:' HOME', icon:faHome},
-    {id: '2', to:'info', text:' INFO', icon: faList},
-    {id: '3', to:'courses', text:' COURSES', icon: faPlus}
+    {id: '2', to:'info', text:' INFO', icon: faInfo},
+    {id: '3', to:'courses', text:' COURSES', icon: faBookReader}
     // {to:'Createstudent', text:' Createstudent', icon: faSign}
   ];
   const Creatitemenunav = (props) =>{

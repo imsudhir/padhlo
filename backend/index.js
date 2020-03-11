@@ -21,7 +21,7 @@ const port =3002;
     } 
  ));
  var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
+    destination: function (req, file, cb) { 
       cb(null, './uploads')
     },
     filename: function (req, file, cb) {
@@ -37,7 +37,7 @@ const port =3002;
      password:'',
      database: 'padhlo_db'
  });
- 
+   
  
 //connect to db  
 dbCon.connect();
@@ -233,7 +233,7 @@ app.post('/login', function (req, res) {
  });
 app.get('/', function (req, res) { 
 return res.send({
-    error:true, 
+    error:true,  
     msg:"hello this is sudhir ..."
 }) 
 })
@@ -356,6 +356,36 @@ app.post('/upload',function(req, res) {
     )
 
 });
+
+app.post('/createnewcourse',function(req, res) {   
+    upload1(req, res, function (err) {
+    console.log(req.body)
+         
+           let sql2 = "INSERT INTO `courses_pl` SET ?";
+           let query = dbCon.query(sql2,
+             {
+                cat_id:req.body.cat_id,
+                course_name: req.body.course_title,
+                description:req.body.course_description
+            },(err, results) => {
+                if(err) throw err; 
+                res.send(JSON.stringify(
+                    {
+                    "status": 200, 
+                    "error": null, 
+                    "message":true,
+                    "response": results
+                   })); 
+              });
+           } 
+            
+  
+
+    )
+
+});
+
+
 //.......
 
 var storage1 = multer.diskStorage({

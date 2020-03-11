@@ -5,7 +5,8 @@ import React, { Component } from 'react';
   DropdownToggle,
   DropdownMenu, 
   Collapse,
-  DropdownItem, Table, Button, ButtonGroup, Card, CardBody, Row, Col} from 'reactstrap';
+  Badge,
+  DropdownItem, Table, Button, ButtonGroup, Card, CardBody, Row, Col, CardHeader} from 'reactstrap';
   import ScrollAnimation from 'react-animate-on-scroll';
 
 class Courses extends Component {
@@ -49,9 +50,11 @@ class Courses extends Component {
 
           <Card className="jd_element_">
             <CardBody style={{boxShadow: "#8e8181 4px 3px 14px 0px"}}>
+            <Badge color="primary">Trending</Badge>
+           <CardHeader className="mb-2">{courses.course_name}</CardHeader>
             <iframe
             src= {demo_file}
-            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture fullscreen" allowFullScreen="1">
             </iframe>
             </CardBody>
             </Card>

@@ -23,7 +23,8 @@ import {
       UncontrolledDropdown,
       DropdownToggle,
       DropdownMenu, 
-      DropdownItem
+      DropdownItem,
+      UncontrolledTooltip
     } from 'reactstrap';
   
 const styles = StyleSheet.create({
@@ -63,7 +64,10 @@ const Viewcourse = (props) =>{
     const { active, icon, title, ...otherProps } = props;
     return (
         <Row className={css(styles.container, active && styles.activeContainer)} vertical="center" {...otherProps}>
-             <Nav><NavItem><NavLink to="/tutdashboard/list" tag={Link}> <FontAwesomeIcon icon={faBookReader} /> <span>List all courses</span></NavLink></NavItem></Nav>
+             <Nav><NavItem id="viwcourselist"><NavLink to="/tutdashboard/list" disabled tag={Link}> <FontAwesomeIcon icon={faBookReader} /> <span>List all courses</span></NavLink></NavItem></Nav>
+             <UncontrolledTooltip placement="right" target="viwcourselist">
+              This is disabled for now
+            </UncontrolledTooltip>
         </Row>)
 }
 
@@ -71,6 +75,6 @@ const Viewcourse = (props) =>{
 Viewcourse.propTypes = {
     active: bool,
     icon: func,
-    title: string
+    title: string 
 };
 export default Viewcourse;

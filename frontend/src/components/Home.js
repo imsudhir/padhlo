@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { UncontrolledCarousel, Col, Jumbotron ,Button, Media } from 'reactstrap';
+import { UncontrolledCarousel, Col, Jumbotron ,Button, NavItem, NavLink, Media } from 'reactstrap';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee,faHome,faList,faPlus,faEdit,faSearch, faSign, faLiraSign, faDollarSign, faSignInAlt} from '@fortawesome/free-solid-svg-icons'
 import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
 import 'normalize.css/normalize.css';
@@ -46,31 +54,38 @@ const Jambo = (props) => {
 //..........................
 const content = [
 	{
+    "id":'0011',
 		title: 'Education Is The Best Way To Reform people',
 		description:
 		'We teach, model, and encourage a love of learning, collaboration, and compassion.',
-		// button: 'Read More',
+		button: 'Teach now',
 		image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80',
 		user: 'Luan Gjokaj',
-		userProfile: 'https://i.imgur.com/JSW6mEk.png'
+    userProfile: 'https://i.imgur.com/JSW6mEk.png',
+    link:'to="/courses"'
 	},
 	{
+    "id":'0012',
 		title: "Education Shapes's peoples Life",
 		description:
 		'Learn for life..',
-		button: 'Discover',
+		button: 'Learn now',
 		image: 'https://i.imgur.com/DCdBXcq.jpg',
 		user: 'Erich Behrens',
-		userProfile: 'https://i.imgur.com/0Clfnu7.png'
+    userProfile: 'https://i.imgur.com/0Clfnu7.png',
+    link:'to="/courses"'
+    
 	},
 	{
-		title: 'Phasellus volutpat metus',
+    "id":'0013',
+		title: "Education Makes Childeren's World Better",
 		description:
 		'Learn to do their best work with other, and be safe  fair and kind',
 		button: 'Learn Now',
 		image: 'https://i.imgur.com/DvmN8Hx.jpg',
 		user: 'Bruno Vizovskyy',
-		userProfile: 'https://i.imgur.com/4KeKvtH.png'
+    userProfile: 'https://i.imgur.com/4KeKvtH.png',
+    link:'to="/courses"'
 	}
 ];
 
@@ -81,7 +96,7 @@ const Home = () => (
 			<h1>react-animated-slider</h1>
 		
 		</div> */}
-		<Slider className="slider-wrapper containerFluid">
+		<Slider href="/courses" className="slider-wrapper containerFluid">
 			{content.map((item, index) => (
 				<div
 					key={index}
@@ -91,7 +106,11 @@ const Home = () => (
 					<div className="inner">
 						<h1>{item.title}</h1>
 						<p>{item.description}</p>
-						<button>{item.button}</button>
+            {/* <NavItem key="0023">
+            <NavLink tag={Link}  to="/courses" > 
+      <Button color="primary">{item.button}</Button>
+            </NavLink>
+            </NavItem> */}
 					</div>
 					{/* <section>
 						<img src={item.userProfile} alt={item.user} />
@@ -99,9 +118,11 @@ const Home = () => (
 							Posted by <strong>{item.user}</strong>
 						</span>
 					</section> */}
+          
 				</div>
 			))}
 		</Slider>
+   
  </React.Fragment>
 );
 
