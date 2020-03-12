@@ -19,7 +19,7 @@ class Courses extends Component {
           }
         }
         fetchYoutubeCourse() {
-            fetch(`http://localhost:3002/getyoutubecourse`)
+            fetch(`http://18.222.201.156:3002/getyoutubecourse`)
               .then(response => response.json())
               .then(data =>
                 this.setState({
