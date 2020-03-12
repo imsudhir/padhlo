@@ -17,7 +17,7 @@ const port =3002;
 // import routes 
  app.use(bodyParser.urlencoded(
     { 
-    extended:true 
+    extended:true  
     } 
  ));
  var storage = multer.diskStorage({
