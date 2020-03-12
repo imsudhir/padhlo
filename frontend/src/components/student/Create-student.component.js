@@ -207,7 +207,7 @@ handleSubmit = (e) => {
       // console.log(this.state.user);
         e.preventDefault();
         if(this.state.validation.nameValid && this.state.validation.emailValid && this.state.validation.contactValid && this.state.validation.passwordValid){
-        fetch("http://localhost:3002/signup/student",
+        fetch("http://18.222.201.156:3002/signup/student",
         {
             method : "Post", 
             headers : {

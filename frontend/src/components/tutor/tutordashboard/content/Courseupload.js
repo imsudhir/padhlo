@@ -217,7 +217,7 @@
   data.append('file', this.state.course.selectedFile)
   console.log(JSON.stringify(data)) 
   // console.log(this.state.selectedFile)
-  axios.post("http://localhost:3002/uploadcourse", data, {
+  axios.post("http://18.222.201.156:3002/uploadcourse", data, {
     // receive two parameter endpoint url ,form data
     // console.log(data3)
   })

@@ -55,7 +55,7 @@ componentDidUpdate(){
 }
 
 login_auth(){
-  axios.post("http://localhost:3002/login", { 
+  axios.post("http://18.222.201.156:3002/login", { 
     "email":this.state.user.email,
     "password":this.state.user.password
    })
