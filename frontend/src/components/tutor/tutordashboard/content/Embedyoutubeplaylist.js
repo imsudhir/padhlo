@@ -67,7 +67,7 @@ class Categories extends React.Component {
     isLoading: true,
     users: [],
     error: null
-  };
+  }; 
 
   fetchCategories() {
     fetch(`http://localhost:3002/getcat`)
@@ -279,7 +279,7 @@ e.preventDefault();
 console.log(this.state.course)
 if(this.state.validation.course_titleValid && this.state.validation.course_descriptionValid){
   // console.log(this.state.selectedFile)
-  axios.post("http://18.222.201.156:3002/youtubecourse", this.state.course, {
+  axios.post("http://localhost:3002/youtubecourse", this.state.course, {
       // receive two parameter endpoint url ,form data
   })
 .then(res => { 
