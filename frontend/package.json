@@ -34,7 +34,7 @@
     "sweetalert2-react-content": "^3.0.1"
   },
   "scripts": {
-    "start": "pm2 start ./node_modules/react-scripts/scripts/start.js --name padhlo",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
