@@ -70,7 +70,7 @@ class Categories extends React.Component {
   };
 
   fetchCategories() {
-    fetch(`http://localhost:3002/getcat`)
+    fetch(`http://padhlo.com:3002/getcat`)
       .then(response => response.json())
       .then(data =>
         this.setState({
