@@ -11,7 +11,6 @@ const upload = multer({dest:'./uploads'})
 app.use(bodyParser.json())
 app.use(cors());
 const port =3002;
-sd 
 // SELECT tutor_pl.title FROM tutor_pl INNER JOIN courses_pl ON tutor_pl.course_id=courses_pl.course_id & courses_pl.user_id=tutor_pl.user_id =1
 
 // import routes 
