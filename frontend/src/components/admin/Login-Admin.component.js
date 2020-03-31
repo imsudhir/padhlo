@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import React, { Component } from 'react';
 import { Redirect, hashHistory} from 'react-router';
 import Tutordash from "../../route/Tutordash";
+import Admindash from "../../route/Admindash";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content'
 
@@ -21,7 +22,7 @@ import {container,  TabContent, TabPane, Nav, NavItem,
     password:/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z@0-9]+){5,20}$/,
   }
 
-class Tutorlogin extends Component {
+class AdminLogin extends Component {
   constructor(props){
     super(props); 
     this.state = {
@@ -64,15 +65,11 @@ componentDidUpdate(){
 }
 
 login_auth(){
-  axios.post("http://localhost:3002/login", { 
+  axios.post("http://localhost:3002/adminlogin", { 
     "email":this.state.user.email,
     "password":this.state.user.password
    })
     .then(response => {
-      // console.log(response.data.user_exist)
-      // console.log(response)
-      // console.log(response.data.response[0].role_id)
-      // console.log(response.data.token && response.data.user_exist)
       if(response.data.token && response.data.user_exist){
         this.setState({
           ...this.state,
@@ -80,7 +77,8 @@ login_auth(){
           role_id: response.data.response[0].role_id
         })
         localStorage.setItem('login_auth_token', this.state.role_id);
-        console.log(this.state)
+
+  console.log(this.state)
   const Swal = require('sweetalert2')
   const MySwal = withReactContent(Swal)
 
@@ -225,16 +223,19 @@ handleSubmit = (e) => {
     render() {
         return (
     <React.Fragment>
-       {this.state.isLoggedin ? (
+       {this.state.role_id==10 ? (
         <React.Fragment>
         {/* {alert("Redireting..")} */}
-       {<Redirect push to="/tutdashboard/embed" component={Tutordash}/>} 
+       {<Redirect push to="/admindashboard/new" compone nt={Admindash}/>}
         {/* {window.top.location = window.top.location} */}
         {/* {this.props.history.push("/tutdashboard")} */}
            
          </React.Fragment>)
-       : ''}
-    <Form  onSubmit = {this.handleSubmit}>
+       : (this.state.role_id==20 ? 
+       <Redirect push to="/tutdashboard/embed" compon ent={Tutordash}/>
+        :''
+        )}
+    <Form st yle={{boxShadow:"3px 3px 9px 9px red"}} onSubmit = {this.handleSubmit}>
     <h2>Tutor</h2> 
     {/* <container> */}
       <Row form> 
@@ -276,4 +277,4 @@ handleSubmit = (e) => {
     } 
 }
  
-export default Tutorlogin;
+export default AdminLogin;

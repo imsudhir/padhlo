@@ -21,7 +21,9 @@ import Footer from "./components/footer/Footer"
 import Createtutor from "./components/tutor/Create-tutor.component";
 import Studentloginsignup from "./components/student/Create-student.component";
 import Tutorloginsignup from "./components/tutor/Create-tutor.component";
+import Adminlogin from "./components/admin/Create-Admin.component";
 import Tutordash from "./route/Tutordash";
+import Admindash from "./route/Admindash";
 import Studentdash from "./route/Studentdash";
 import Info from "./components/Info";
 import Courses from "./components/Courses";
@@ -43,7 +45,7 @@ function App() {
             <Footer />
           </Row>
       </Route>
-      {(localStorage.getItem('login_auth_token')!==null) ?
+      {(localStorage.getItem('login_auth_token')==20) ?
       <Route path="/tutdashboard">
       <Tutordash/>
       </Route>  :''}
@@ -93,6 +95,22 @@ function App() {
         <Footer />
       </Row>
       </Route>
+      {(localStorage.getItem('login_auth_token')==10) ?
+      <Redirect push to="/admindashboard/new" component={Admindash}/>
+      :
+      (localStorage.getItem('login_auth_token')==20) ?
+      <Redirect push to="/tutdashboard/embed" component={Tutordash}/>
+      :
+      <Route path="/admin">
+        <Row className="mt-3 top" className="topheader" >
+        </Row>
+          <Adminlogin />
+      </Route>      
+      }
+      {(localStorage.getItem('login_auth_token')==10) ?
+      <Route path="/admindashboard">
+      <Admindash/>
+      </Route>  :''}
       {/* <Route exact path="/Tutordash">
 <Tutordash />
       </Route> */}

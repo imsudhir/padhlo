@@ -197,6 +197,50 @@ app.post('/login', function (req, res) {
     }
  });
 
+ //.........
+ app.post('/adminlogin', function (req, res) {
+    const data = req.body;
+    const token = jwt.sign({data}, 'jwt_secret_key')
+    console.log(data)
+    console.log(md5(data.password));
+
+    if (!data.email || !data.password) { 
+        console.log("errrrrr....")
+        return res.status(400).send({ error: user, message: 'Account does not exist'});
+    } else {
+    const login = "SELECT `email` , `role_id` FROM `user_pl` WHERE `email` = ? && `password` = ?"
+    const query = dbCon.query(login, [data.email, md5(data.password)],(err, results) => {
+      if(err) throw err;
+      console.log(results)
+      if(results.length){
+      res.send(JSON.stringify( 
+          {
+          "status": 200,
+          "error": null,
+          "message":true,
+          "user_exist":true,
+          "response": results,
+          "token":token
+         }));
+        } else{
+            res.send(JSON.stringify( 
+                {
+                "status": 200,
+                "error": null,
+                "message":true,
+                "user_exist":false, 
+                "response": results,
+                "token":null
+
+               }));
+        } 
+    });
+    }
+ });
+
+
+ //........
+
  app.get('/viewallcourse', function (req, res) {
     dbCon.query('SELECT * FROM `courses_pl`  WHERE `role_id` = 10 ?', function (error, results, fields) {
         if (error) throw error;
@@ -385,6 +429,28 @@ app.post('/createnewcourse',function(req, res) {
 
 });
 
+app.post('/createnewcat',function(req, res) {   
+    upload1(req, res, function (err) {
+    console.log(req.body) 
+         
+           let sql2 = "INSERT INTO `category_pl` SET ?";
+           let query = dbCon.query(sql2,
+             {
+                category_name: req.body.category_title,
+                category_description:req.body.category_description
+            },(err, results) => {
+                if(err) throw err; 
+                res.send(JSON.stringify(
+                    {
+                    "status": 200, 
+                    "error": null, 
+                    "message":true,
+                    "insertedid": results.insertId
+                   })); 
+              });
+           } 
+    )
+});
 
 //.......
 
