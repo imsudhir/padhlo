@@ -8,6 +8,7 @@ import { StyleSheet, css } from 'aphrodite';
 import SidebarComponent from '../components/admin/admindashboard/sidebar/SidebarComponent';
 import AdminDashHeaderComponent from '../components/admin/admindashboard/header/TutordashHeaderComponent';
 import Createnewcat from '../components/admin/admindashboard/content/Createnewcategory'
+import TutorsList from '../components/admin/admindashboard/content/TutorListComponent'
 import '../App.css';
 // import {Col, Row } from 'reactstrap'
 import {
