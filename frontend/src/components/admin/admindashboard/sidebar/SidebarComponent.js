@@ -10,7 +10,7 @@ import {
 import { Column } from 'simple-flexbox';
 import { StyleSheet, css } from 'aphrodite';
 import LogoComponent from './LogoComponent';
-import Viewcourse from './View.courses';
+import ListAllUsersmenu from './ListAllUsers.menu';
 import IconOverview from '../../../../assets/icon-overview.js';
 import IconTickets from '../../../../assets/icon-tickets.js';
 import IconIdeas from '../../../../assets/icon-ideas.js';
@@ -119,7 +119,7 @@ class SidebarComponent extends React.Component {
                     <Column className={css(styles.container)} breakpoints={{ 768: css(styles.containerMobile, expanded ? styles.show : styles.hide) }}>
                         <LogoComponent />
                         <Column className={css(styles.menuItemList)}>
-                        <Viewcourse 
+                        <ListAllUsersmenu 
                             onClick={() => this.onItemClicked('item')} 
                             onClick={() => this.onItemClicked('Overview')}
                             />
@@ -128,7 +128,6 @@ class SidebarComponent extends React.Component {
                             onClick={() => this.onItemClicked('Overview')}
                         />
                         </Column>
-                     
                     </Column>
                     {isMobile && expanded && <div className={css(styles.outsideLayer)} onClick={this.toggleMenu}></div>}
                 </Row>

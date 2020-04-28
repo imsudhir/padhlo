@@ -38,7 +38,8 @@ import { StyleSheet, css } from 'aphrodite';
         height: 56,
         cursor: 'pointer',
         ':hover': {
-            backgroundColor: 'rgba(221,226,255, 0.08)'
+          backgroundColor: 'white',
+          color: 'black'
         },
         paddingLeft: 32,
         paddingRight: 32

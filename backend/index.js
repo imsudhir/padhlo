@@ -9,7 +9,7 @@ const multer = require('multer')
 const mkdirp = require('mkdirp')
 const upload = multer({dest:'./uploads'})
 app.use(bodyParser.json())
-app.use(cors());
+app.use(cors()); 
 const port =3002;
  
 // SELECT tutor_pl.title FROM tutor_pl INNER JOIN courses_pl ON tutor_pl.course_id=courses_pl.course_id & courses_pl.user_id=tutor_pl.user_id =1
@@ -43,13 +43,13 @@ const port =3002;
 dbCon.connect();
 //retrive all tutor list 
 app.get('/user/tutor', function (req, res) {
-    dbCon.query('SELECT * FROM `user_pl`', function (error, results, fields) {
+    dbCon.query('SELECT * FROM `user_pl` where role_id=20', function (error, results, fields) {
         if (error) throw error;
         return res.send({ error: false, data: results, message: 'users list.' });
     });
  
  });
-
+ 
  app.get('/user/student', function (req, res) {
     dbCon.query('SELECT * FROM `user_pl`  WHERE `role_id` = 10 ?', function (error, results, fields) {
         if (error) throw error;
@@ -163,7 +163,7 @@ app.post('/login', function (req, res) {
     console.log(data)
     console.log(md5(data.password));
 
-    if (!data.email || !data.password) { 
+    if (!data.email || !data.password) {
         console.log("errrrrr....")
         return res.status(400).send({ error: user, message: 'Account does not exist'});
     } else {
@@ -238,6 +238,35 @@ app.post('/login', function (req, res) {
     }
  });
 
+ app.put('/verifyuser', function (req, res) {
+    const data = req.body.id
+    console.log(data);
+
+    if (!data) { 
+        console.log("errrrrr....");
+        return res.status(400).send({ error: user, message: 'Account does not exist'});
+    } else {
+    const verifyuser = "UPDATE `user_pl` SET `verify_status` = '1' WHERE `user_pl`.`user_id` = ?"
+    const query = dbCon.query(verifyuser, [data],(err, results) => {
+      if(err) throw err;
+      console.log(results)
+      if(results.affectedRows){
+      res.send(JSON.stringify(  
+          {
+          "status": 200,
+          "success":1
+         })); 
+        } else{
+            res.send(JSON.stringify( 
+                {
+                "status": 200,
+                "success":0
+
+               }));
+        } 
+    });
+    }
+ });
 
  //........
 
@@ -275,7 +304,7 @@ app.post('/login', function (req, res) {
         return res.send(results);
     });
  });
-app.get('/', function (req, res) { 
+app.get('/', function (req, res) {  
 return res.send({
     error:true,  
     msg:"hello this is sudhir ..."

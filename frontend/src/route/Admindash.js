@@ -6,7 +6,7 @@ import logo from '../logo.svg';
 // import { Column, Row } from 'simple-flexbox';
 import { StyleSheet, css } from 'aphrodite';
 import SidebarComponent from '../components/admin/admindashboard/sidebar/SidebarComponent';
-import TutorDashHeaderComponent from '../components/admin/admindashboard/header/TutordashHeaderComponent';
+import AdminDashHeaderComponent from '../components/admin/admindashboard/header/TutordashHeaderComponent';
 import Createnewcat from '../components/admin/admindashboard/content/Createnewcategory'
 import '../App.css';
 // import {Col, Row } from 'reactstrap'
@@ -28,16 +28,20 @@ const styles = StyleSheet.create({
         minHeight: '100vh'
     },
     content: {
-        marginTop: 54
+        marginTop:20
     },
     mainBlock: {
         backgroundColor: '#F7F8FC',
-        padding: 30
+        padding: 30 
+    },
+    tableissuefix:{
+        display: 'flex',
+        flexWrap: 'nowrap !important'
     }
 });
 
 
-class ContentComponent1 extends Component {
+class TutorsList1 extends Component {
     constructor(props) {
         super(props);
           this.state = {
@@ -105,16 +109,20 @@ render() {
     const { selectedItem } = this.state;
     console.log(this.state)
     return (
-        <Row className={css(styles.container)}>
+        <Row className={css(styles.container), css(styles.tableissuefix)}>
             <SidebarComponent selectedItem={selectedItem} onChange={(selectedItem) => this.setState({ selectedItem })} />
             <Col flexGrow={2} className={css(styles.mainBlock)}>
-                <TutorDashHeaderComponent title={selectedItem} />
+                <AdminDashHeaderComponent title={selectedItem} />
                 <div className={css(styles.content)}>
                 {/* <ContentComponent /> */}
                  
                 {/* <Router> */}
                 <Route path="/admindashboard/new" component={Createnewcat} />
-                <Route path="/admindashboard/list" component={ContentComponent1} />
+                <Route path="/admindashboard/list" component={TutorsList} />
+                {/* <Route path="/admindashboard/list/:id" render={props =>(
+                 <TutorVerify {...props}/>
+                 ) }>
+                </Route> */}
                 {/* </Router> */}
 
                 </div>

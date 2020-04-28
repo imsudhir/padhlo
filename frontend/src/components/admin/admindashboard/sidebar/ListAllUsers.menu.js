@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
         height: 56,
         cursor: 'pointer',
         ':hover': {
-            backgroundColor: 'rgba(221,226,255, 0.08)'
+            backgroundColor: 'white',
+            color: 'black !important'
         },
         paddingLeft: 32,
         paddingRight: 32
@@ -60,21 +61,21 @@ const styles = StyleSheet.create({
     }
 });
 
-const Viewcourse = (props) =>{
+const ListAllUsersmenu = (props) =>{
     const { active, icon, title, ...otherProps } = props;
     return (
         <Row className={css(styles.container, active && styles.activeContainer)} vertical="center" {...otherProps}>
-             <Nav><NavItem id="viwcourselist"><NavLink to="/tutdashboard/list" disabled tag={Link}> <FontAwesomeIcon icon={faBookReader} /> <span>List all courses</span></NavLink></NavItem></Nav>
-             <UncontrolledTooltip placement="right" target="viwcourselist">
-              This is disabled for now
+             <Nav><NavItem id="viwuserslist"><NavLink to="/admindashboard/list"  tag={Link}> <FontAwesomeIcon icon={faBookReader} /> <span>List all Users</span></NavLink></NavItem></Nav>
+             <UncontrolledTooltip placement="right" target="viwuserslist">
+             List All Users
             </UncontrolledTooltip>
         </Row>)
 }
 
  
-Viewcourse.propTypes = {
+ListAllUsersmenu.propTypes = {
     active: bool,
     icon: func,
     title: string 
 };
-export default Viewcourse;
+export default ListAllUsersmenu;

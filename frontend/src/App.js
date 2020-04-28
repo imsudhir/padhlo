@@ -96,7 +96,7 @@ function App() {
       </Row>
       </Route>
       {(localStorage.getItem('login_auth_token')==10) ?
-      <Redirect push to="/admindashboard/new" component={Admindash}/>
+      <Redirect  to="/admindashboard/new" component={Admindash}/>
       :
       (localStorage.getItem('login_auth_token')==20) ?
       <Redirect push to="/tutdashboard/embed" component={Tutordash}/>

@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     }
 });
 
-class TutorDashHeaderComponent extends Component{
+class AdminDashHeaderComponent extends Component{
     constructor(){
         super()
         this.state={
@@ -107,7 +107,7 @@ class TutorDashHeaderComponent extends Component{
     } 
     render(){ 
     return (
-        <Row>
+        <Row className="testttttttttttttttt">
         {this.state.logout ? (<Redirect push to="/home" />) :''}
             <Col lg="10" sm="10" md="10"></Col>
             <Col lg="2" sm="2" md="2">
@@ -121,8 +121,8 @@ class TutorDashHeaderComponent extends Component{
     }
 }
 
-TutorDashHeaderComponent.propTypes = {
+AdminDashHeaderComponent.propTypes = {
     title: string
 };
 
-export default TutorDashHeaderComponent;
+export default AdminDashHeaderComponent;
